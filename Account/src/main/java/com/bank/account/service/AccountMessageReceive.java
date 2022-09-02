@@ -8,6 +8,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.PrintStream;
+
 @Service
 public class AccountMessageReceive {
 
@@ -19,22 +21,24 @@ public class AccountMessageReceive {
     private BankAccountRepository bankAccountRepository;
 
     @RabbitListener(queues = "newAccount")
-    public Boolean receive(String username) {
+    public Boolean receiveUserMessage(String username) {
         try {
             BankAccountDto bankAccountDto = new BankAccountDto();
             bankAccountDto.setUsername(username);
             bankAccountDto.setIban(userAccountService.generateIban());
-            bankAccountDto.setBalance(0.23);
+            bankAccountDto.setBalance(0.0);
             bankAccountDto.setNumberAccount(userAccountService.getAccountNumber());
             bankAccountDto.setState(BankAccountEnum.INACTIVE);
+
             bankAccountRepository.save(bankAccountMapper.toEntity(bankAccountDto));
 
             return true;
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error during BankAccount registration");
         }
 
         return false;
     }
+
 }

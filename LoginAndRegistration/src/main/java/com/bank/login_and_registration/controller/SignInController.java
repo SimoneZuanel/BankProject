@@ -23,10 +23,10 @@ public class SignInController {
 
     @PostMapping("/registration")
     public void saveUser(@RequestParam("first_name") String firstName,
-                           @RequestParam("last_name") String lastName,
-                           @RequestParam("birth_date") String birthDate,
-                           @RequestParam("email") String email,
-                           @RequestParam("password") String password) {
+                         @RequestParam("last_name") String lastName,
+                         @RequestParam("birth_date") String birthDate,
+                         @RequestParam("email") String email,
+                         @RequestParam("password") String password) {
 
         UserDto userDto = signInService.addUser(firstName, lastName, birthDate, email);
         LoggerDto loggerDto = signInService.addLogger(password, userDto);

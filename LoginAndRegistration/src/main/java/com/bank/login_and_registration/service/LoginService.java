@@ -23,14 +23,22 @@ public class LoginService {
     private PasswordEncoder passwordEncoder;
 
     public String login(String username, String password) {
+
+        if (username == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Campo username vuoto");
+
         Logger logger = loggerRepository.findByUsername(username);
-        if (!this.passwordEncoder.matches(password, logger.getPassword())) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Bad credentials");
-        }
+
+        if (logger == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Utente non trovato");
+
+        if (!this.passwordEncoder.matches(password, logger.getPassword()))
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "La password inserita non è corretta");
+
         ObjectNode loggerNode = new ObjectMapper().convertValue(logger, ObjectNode.class);
         loggerNode.remove("password");
         Map claimMap = new HashMap(0);
         claimMap.put("logger", loggerNode);
+
         return JwtProvider.createJwt(username, claimMap);
+
     }
 }

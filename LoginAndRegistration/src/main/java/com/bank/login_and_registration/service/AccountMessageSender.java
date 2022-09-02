@@ -21,6 +21,7 @@ public class AccountMessageSender {
     }
 
     public Boolean sendAccountMessage(String username) {
+
         logger.info("Messaggio inviato");
 
         Boolean response = (Boolean) rabbitTemplate.convertSendAndReceive("newAccount", username);
