@@ -13,7 +13,7 @@ public class BankAccountMapper {
         dto.setUsername(entity.getUsername());
         dto.setIban(entity.getIban());
         dto.setBalance(entity.getBalance());
-        dto.setNumber_account(entity.getNumber_account());
+        dto.setNumberAccount(entity.getNumberAccount());
         dto.setState(entity.getState());
         return dto;
     }
@@ -24,7 +24,7 @@ public class BankAccountMapper {
         entity.setUsername(dto.getUsername());
         entity.setIban(dto.getIban());
         entity.setBalance(dto.getBalance());
-        entity.setNumber_account(dto.getNumber_account());
+        entity.setNumberAccount(dto.getNumberAccount());
         entity.setState(dto.getState());
         return entity;
     }

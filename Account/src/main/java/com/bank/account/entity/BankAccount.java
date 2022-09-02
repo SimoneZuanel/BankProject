@@ -24,9 +24,9 @@ public class BankAccount {
     private Double balance;
 
     @Column(name = "number_account")
-    private String number_account;
+    private String numberAccount;
 
     @Column(name = "state")
-    private String state;
+    private BankAccountEnum state;
 
 }
