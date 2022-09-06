@@ -4,7 +4,6 @@ import com.bank.login_and_registration.dto.AuthorityDto;
 import com.bank.login_and_registration.dto.LoggerDto;
 import com.bank.login_and_registration.dto.UserDto;
 import com.bank.login_and_registration.entity.AuthorityEnum;
-import com.bank.login_and_registration.entity.User;
 import com.bank.login_and_registration.mapper.AuthorityMapper;
 import com.bank.login_and_registration.mapper.LoggerMapper;
 import com.bank.login_and_registration.mapper.UserMapper;
@@ -59,6 +58,7 @@ public class SignInService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");
 
 
+        // email controllo caratteri
         if (userRepository.findByEmail(email) != null)
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Email già esistente");
 

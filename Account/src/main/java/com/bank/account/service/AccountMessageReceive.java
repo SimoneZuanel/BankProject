@@ -8,8 +8,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.PrintStream;
-
 @Service
 public class AccountMessageReceive {
 
