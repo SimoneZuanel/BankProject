@@ -37,7 +37,7 @@ public class SignInService {
         if(firstName == null || lastName == null || birthDate == null || email == null)
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Tutti i campi devono essere riempiti");
 
-        StringTokenizer st = new StringTokenizer(birthDate, "/");
+        /*StringTokenizer st = new StringTokenizer(birthDate, "/");
         Integer day= Integer.parseInt(st.nextToken());
         if(day==null)
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Formato sbagliato");
@@ -55,7 +55,7 @@ public class SignInService {
                 || month==12) && (day<0 || day > 32))
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");
         if(month==4 || month== 6 || month==9 || month==11 || day<0 || day > 31)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");*/
 
 
         // email controllo caratteri
