@@ -37,7 +37,7 @@ public class SignInService {
         if(firstName == null || lastName == null || birthDate == null || email == null)
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Tutti i campi devono essere riempiti");
 
-        /*StringTokenizer st = new StringTokenizer(birthDate, "/");
+        StringTokenizer st = new StringTokenizer(birthDate, "/");
         Integer day= Integer.parseInt(st.nextToken());
         if(day==null)
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Formato sbagliato");
@@ -49,14 +49,13 @@ public class SignInService {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Formato sbagliato");
         if(year>2004)
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Hai meno di 18 anni");
-        if(month==2 || day<0 || day >30)
+        if((month==2) && (day<1 || day >29))
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");
         if((month==1 || month==3 || month==5 || month == 7 || month == 8 || month == 10
-                || month==12) && (day<0 || day > 32))
+                || month==12) && (day<1 || day > 31))
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");
-        if(month==4 || month== 6 || month==9 || month==11 || day<0 || day > 31)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");*/
-
+        if((month==4 || month== 6 || month==9 || month==11) && (day<1 || day > 30))
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");
 
         // email controllo caratteri
         if (userRepository.findByEmail(email) != null)
@@ -88,7 +87,7 @@ public class SignInService {
     }
 
     public String generateUsername() {
-        List<Integer> usernameList = loggerRepository.findUsername();
+        List<Integer> usernameList = loggerRepository.findUsernames();
         Integer userInt = randomUsernameGenerate();
 
         while (usernameList.contains(userInt)) {

@@ -21,7 +21,7 @@ public class SignInController {
         this.accountMessageSender = accountMessageSender;
     }
 
-    @PostMapping("/registration")
+    @PostMapping (value = "/registration")
     public void saveUser(@RequestParam("first_name") String firstName,
                          @RequestParam("last_name") String lastName,
                          @RequestParam("birth_date") String birthDate,

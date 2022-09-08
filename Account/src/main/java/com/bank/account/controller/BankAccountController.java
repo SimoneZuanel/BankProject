@@ -24,11 +24,29 @@ public class BankAccountController {
         return bankAccountService.findAllBankAccounts();
     }
 
-    @GetMapping(value = "/activeBankAccount")
-    public void activeBankAccount(@RequestParam String numberAccount){
-        bankAccountService.activeBankAccount(numberAccount);
+    @GetMapping(value = "/getBalance")
+    public Double getBalance(@RequestParam String iban){
+        return bankAccountService.getBalance(iban);
     }
 
+    @PostMapping(value = "/openingRequestBankAccount")
+    public void openingRequestBankAccount(@RequestParam String numberAccount){
+        bankAccountService.openingRequestBankAccount(numberAccount);
+    }
 
+    @GetMapping(value = "/closingRequestBankAccount")
+    public void closingRequestBankAccount(@RequestParam String numberAccount){
+        bankAccountService.closingRequestBankAccount(numberAccount);
+    }
+
+    @GetMapping(value = "/openBankAccount")
+    public void openBankAccount(@RequestParam String numberAccount){
+        bankAccountService.openBankAccount(numberAccount);
+    }
+
+    @DeleteMapping (value = "/closeBankAccount")
+    public void closeBankAccount(@RequestParam String numberAccount){
+        bankAccountService.closeBankAccount(numberAccount);
+    }
 
 }

@@ -20,8 +20,10 @@ public class BankAccountService {
     private BankAccountRepository bankAccountRepository;
 
     @Autowired
-    private BankAccountMapper bankAccountMapper;
+    private UtilAccountService utilAccountService;
 
+    @Autowired
+    private BankAccountMapper bankAccountMapper;
 
     public List<BankAccountDto> findAllBankAccounts(){
 
@@ -36,18 +38,86 @@ public class BankAccountService {
         return bankAccountDtoList;
     }
 
-    public void activeBankAccount(String numberAccount) {
+    public Double getBalance(String iban){
+
+        BankAccountDto bankAccountDto = bankAccountMapper.toDto(bankAccountRepository.findByIban(iban));
+
+        return bankAccountDto.getBalance();
+    }
+
+    public void openingRequestBankAccount(String numberAccount) {
+
+        BankAccount oldBankAccount = bankAccountRepository.findByNumberAccount(numberAccount);
+
+        BankAccountDto newBankAccountDto = new BankAccountDto();
+
+        if (oldBankAccount == null)
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "account non trovato, non è possibile aprire un nuovo conto");
+        else
+
+        newBankAccountDto.setUsername(oldBankAccount.getUsername());
+        newBankAccountDto.setBalance(0.0);
+        List<String> numberAccountsList = bankAccountRepository.findNumberAccounts();
+
+        while (numberAccountsList.contains(utilAccountService.getAccountNumber())){
+            utilAccountService.generateIban();
+        }
+
+        newBankAccountDto.setIban(utilAccountService.getIban());
+        newBankAccountDto.setNumberAccount(utilAccountService.getAccountNumber());
+        newBankAccountDto.setState(BankAccountEnum.OPENING_REQUEST);
+
+        bankAccountRepository.save(bankAccountMapper.toEntity(newBankAccountDto));
+    }
+
+    public void closingRequestBankAccount(String numberAccount) {
         BankAccountDto bankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(numberAccount));
 
-        if(bankAccount.getState() == BankAccountEnum.INACTIVE){
-            bankAccount.setState(BankAccountEnum.ACTIVE);
+        if(bankAccount.getState() == BankAccountEnum.ACTIVE){
+            bankAccount.setState(BankAccountEnum.CLOSING_REQUEST);
             bankAccountRepository.save(bankAccountMapper.toEntity(bankAccount));
 
+        }else if (bankAccount.getState() == BankAccountEnum.INACTIVE){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account non è attivo");
+
+        }else if (bankAccount.getState() == BankAccountEnum.OPENING_REQUEST){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è in fase di approvazione");
+
         }else{
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "account già attivo");
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account non esiste");
         }
 
     }
 
+    public void openBankAccount(String numberAccount) {
+        BankAccountDto bankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(numberAccount));
+
+        if(bankAccount.getState() == BankAccountEnum.INACTIVE || bankAccount.getState() == BankAccountEnum.OPENING_REQUEST){
+            bankAccount.setState(BankAccountEnum.ACTIVE);
+            bankAccountRepository.save(bankAccountMapper.toEntity(bankAccount));
+
+        }else if (bankAccount.getState() == BankAccountEnum.ACTIVE){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è già attivo");
+
+        }else{
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è in fase di chiusura");
+        }
+
+    }
+
+    public void closeBankAccount(String numberAccount) {
+
+        BankAccount bankAccount = bankAccountRepository.findByNumberAccount(numberAccount);
+        BankAccountDto bankAccountDto;
+
+        if (bankAccount == null)
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
+                    "account non esistente, non è possibile chiudere il conto");
+        else
+            bankAccountDto = bankAccountMapper.toDto(bankAccount);
+            bankAccountRepository.delete(bankAccountMapper.toEntity(bankAccountDto));
+    }
 
 }
+

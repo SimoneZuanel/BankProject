@@ -10,9 +10,25 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfig {
     @Bean
-    public Queue newAccount() {
-        return new Queue("newAccount", false);
+    public Queue withdrawalGo() {
+        return new Queue("withdrawalGo", false);
     }
+
+    @Bean
+    public Queue withdrawalReturn() {
+        return new Queue("withdrawalReturn", false);
+    }
+
+    @Bean
+    public Queue depositGo() {
+        return new Queue("depositGo", false);
+    }
+
+    @Bean
+    public Queue depositReturn() {
+        return new Queue("depositReturn", false);
+    }
+
 
     @Bean
     public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
