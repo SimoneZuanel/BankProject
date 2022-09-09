@@ -15,6 +15,8 @@ public class LoginController {
         this.loginService = loginService;
     }
 
+
+    @CrossOrigin("*")
     @PostMapping(value = "/loginClient")
     public String loginClient(@RequestParam String username,
                               @RequestParam String password) {

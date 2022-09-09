@@ -12,7 +12,7 @@ public class LoginAndSignInApplication {
     public static void main(String[] args) {
         SpringApplication.run(LoginAndSignInApplication.class, args);
     }
-    @Bean
+   /* @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
@@ -20,6 +20,6 @@ public class LoginAndSignInApplication {
                 registry.addMapping("*").allowedOrigins("*");
             }
         };
-    }
+    }*/
 }
 

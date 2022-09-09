@@ -21,6 +21,7 @@ public class SignInController {
         this.accountMessageSender = accountMessageSender;
     }
 
+    @CrossOrigin("*")
     @PostMapping (value = "/registration")
     public void saveUser(@RequestParam String firstName,
                          @RequestParam String lastName,
