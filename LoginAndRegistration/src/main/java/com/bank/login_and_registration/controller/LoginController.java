@@ -18,8 +18,8 @@ public class LoginController {
 
     @CrossOrigin("*")
     @PostMapping(value = "/login")
-    public String loginClient(@RequestBody LoggerDto loggerDto) {
-        return this.loginService.loginClient(loggerDto);
+    public String login(@RequestBody LoggerDto loggerDto) {
+        return this.loginService.login(loggerDto.getUsername(), loggerDto.getPassword());
     }
 
 }

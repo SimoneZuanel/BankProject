@@ -24,6 +24,7 @@ public class SignInService {
     final static Integer usernameLength = 7;
 
     @Autowired UserRepository userRepository;
+
     @Autowired UserMapper userMapper;
     @Autowired LoggerRepository loggerRepository;
     @Autowired LoggerMapper loggerMapper;
@@ -70,11 +71,10 @@ public class SignInService {
         return userDto;
     }
 
-    public LoggerDto addLogger(String password, UserDto userDto) {
+    public LoggerDto addLogger(String password) {
         LoggerDto loggerDto = new LoggerDto();
         loggerDto.setUsername(generateUsername());
         loggerDto.setPassword(passwordEncoder.encode(password));
-        loggerDto.setUserId(userMapper.toEntity(userDto));
         return loggerDto;
     }
 

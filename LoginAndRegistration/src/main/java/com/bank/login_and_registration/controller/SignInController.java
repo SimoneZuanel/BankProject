@@ -1,6 +1,7 @@
 package com.bank.login_and_registration.controller;
 
 import com.bank.login_and_registration.dto.LoggerDto;
+import com.bank.login_and_registration.dto.RegistrationDto;
 import com.bank.login_and_registration.dto.UserDto;
 import com.bank.login_and_registration.service.AccountMessageSender;
 import com.bank.login_and_registration.service.SignInService;
@@ -23,14 +24,11 @@ public class SignInController {
 
     @CrossOrigin("*")
     @PostMapping (value = "/registration")
-    public void saveUser(@RequestParam String firstName,
-                         @RequestParam String lastName,
-                         @RequestParam String birthDate,
-                         @RequestParam String email,
-                         @RequestParam String password) {
+    public void saveUser(@RequestBody RegistrationDto registrationDto) {
 
-        UserDto userDto = signInService.addUser(firstName, lastName, birthDate, email);
-        LoggerDto loggerDto = signInService.addLogger(password, userDto);
+        UserDto userDto = signInService.addUser(registrationDto.getFirstName(), registrationDto.getLastName(),
+                registrationDto.getBirthDate(), registrationDto.getEmail());
+        LoggerDto loggerDto = signInService.addLogger(registrationDto.getPassword());
         signInService.addAuthority(loggerDto);
 
         accountMessageSender.sendAccountMessage(loggerDto.getUsername());

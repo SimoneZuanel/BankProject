@@ -24,15 +24,15 @@ public class LoginService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String loginClient(LoggerDto loggerDto) {
+    public String login(String username, String password) {
 
-        if (loggerDto.getUsername() == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Campo username vuoto");
+        if (username == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Campo username vuoto");
 
-        Logger logger = loggerRepository.findByUsername(loggerDto.getUsername());
+        Logger logger = loggerRepository.findByUsername(username);
 
         if (logger == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Utente non trovato");
 
-        if (!this.passwordEncoder.matches(loggerDto.getPassword(), logger.getPassword()))
+        if (!this.passwordEncoder.matches(password, logger.getPassword()))
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "La password inserita non è corretta");
 
         ObjectNode loggerNode = new ObjectMapper().convertValue(logger, ObjectNode.class);
@@ -40,7 +40,7 @@ public class LoginService {
         Map claimMap = new HashMap(0);
         claimMap.put("logger", loggerNode);
 
-        return JwtProvider.createJwt(loggerDto.getUsername(), claimMap);
+        return JwtProvider.createJwt(username, claimMap);
 
     }
 
