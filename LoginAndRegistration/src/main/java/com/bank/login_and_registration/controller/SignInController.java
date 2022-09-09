@@ -22,11 +22,11 @@ public class SignInController {
     }
 
     @PostMapping (value = "/registration")
-    public void saveUser(@RequestParam("first_name") String firstName,
-                         @RequestParam("last_name") String lastName,
-                         @RequestParam("birth_date") String birthDate,
-                         @RequestParam("email") String email,
-                         @RequestParam("password") String password) {
+    public void saveUser(@RequestParam String firstName,
+                         @RequestParam String lastName,
+                         @RequestParam String birthDate,
+                         @RequestParam String email,
+                         @RequestParam String password) {
 
         UserDto userDto = signInService.addUser(firstName, lastName, birthDate, email);
         LoggerDto loggerDto = signInService.addLogger(password, userDto);

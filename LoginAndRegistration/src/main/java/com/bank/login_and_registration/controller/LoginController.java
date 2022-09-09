@@ -16,14 +16,14 @@ public class LoginController {
     }
 
     @PostMapping(value = "/loginClient")
-    public String loginClient(@RequestParam("username") String username,
-                        @RequestParam("password") String password) {
+    public String loginClient(@RequestParam String username,
+                              @RequestParam String password) {
         return this.loginService.loginClient(username, password);
     }
 
     @PostMapping(value = "/loginEmployee")
-    public String loginEmployee(@RequestParam("email") String email,
-                              @RequestParam("password") String password) {
+    public String loginEmployee(@RequestParam String email,
+                                @RequestParam String password) {
         return this.loginService.loginEmployee(email, password);
     }
 
