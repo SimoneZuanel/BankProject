@@ -23,8 +23,6 @@ public class AccountMessageReceive {
     @Autowired
     private BankAccountRepository bankAccountRepository;
 
-    @Autowired
-    private TransactionMessageSender transactionMessageSender;
 
     @RabbitListener(queues = "newAccount")
     public Boolean receiveUserMessage(String username) {
@@ -54,49 +52,42 @@ public class AccountMessageReceive {
         return false;
     }
 
-    @RabbitListener(queues = "withdrawalGo")
+    @RabbitListener(queues = "withdrawal")
     public String receiveTransactionMessageWithdrawal(MessageTransactionDto messageTransactionDto) {
 
         BankAccountDto bankAccountDto =
                 bankAccountMapper.toDto(bankAccountRepository.findByIban(messageTransactionDto.getIbanPayer()));
 
-        if (bankAccountDto == null){
+        if (bankAccountDto == null) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account non esiste");
-        }
 
-        else if (bankAccountDto.getBalance() > messageTransactionDto.getAmount()) {
+        } else if (bankAccountDto.getBalance() > messageTransactionDto.getAmount()) {
             bankAccountDto.setBalance(bankAccountDto.getBalance() - messageTransactionDto.getAmount());
             bankAccountRepository.save(bankAccountMapper.toEntity(bankAccountDto));
             return "success";
 
         } else {
-            System.out.println("Il credito non è sufficiente");
             return "failed";
         }
 
     }
 
-    @RabbitListener(queues = "depositGo")
-    public Boolean receiveTransactionMessageDeposit(MessageTransactionDto messageTransactionDto) {
+    @RabbitListener(queues = "deposit")
+    public String receiveTransactionMessageDeposit(MessageTransactionDto messageTransactionDto) {
 
         BankAccountDto bankAccountDto =
                 bankAccountMapper.toDto(bankAccountRepository.findByIban(messageTransactionDto.getIbanPayer()));
 
-        if (bankAccountDto == null){
-            transactionMessageSender.sendAccountMessageDeposit("Failed");
+        if (bankAccountDto == null) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account non esiste");
-        }
 
-        else if (messageTransactionDto.getAmount() > 0) {
+        } else if (messageTransactionDto.getAmount() > 0) {
             bankAccountDto.setBalance(bankAccountDto.getBalance() + messageTransactionDto.getAmount());
             bankAccountRepository.save(bankAccountMapper.toEntity(bankAccountDto));
-            transactionMessageSender.sendAccountMessageDeposit("Success");
-            return true;
+            return "success";
 
         } else {
-            System.out.println("Il deposito deve essere maggiore di 0");
-            transactionMessageSender.sendAccountMessageDeposit("Failed");
-            return false;
+            return "failed";
         }
 
     }

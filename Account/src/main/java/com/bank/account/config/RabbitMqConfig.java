@@ -10,23 +10,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfig {
     @Bean
-    public Queue withdrawalGo() {
-        return new Queue("withdrawalGo", false);
+    public Queue withdrawal() {
+        return new Queue("withdrawal", false);
     }
 
     @Bean
-    public Queue withdrawalReturn() {
-        return new Queue("withdrawalReturn", false);
-    }
-
-    @Bean
-    public Queue depositGo() {
-        return new Queue("depositGo", false);
-    }
-
-    @Bean
-    public Queue depositReturn() {
-        return new Queue("depositReturn", false);
+    public Queue deposit() {
+        return new Queue("deposit", false);
     }
 
 
