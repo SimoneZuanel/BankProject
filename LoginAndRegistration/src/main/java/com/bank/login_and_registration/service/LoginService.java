@@ -1,10 +1,9 @@
 package com.bank.login_and_registration.service;
 
+import com.bank.login_and_registration.dto.LoggerDto;
 import com.bank.login_and_registration.entity.Logger;
-import com.bank.login_and_registration.entity.User;
 import com.bank.login_and_registration.jwt.JwtProvider;
 import com.bank.login_and_registration.repository.LoggerRepository;
-import com.bank.login_and_registration.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,20 +20,19 @@ public class LoginService {
 
     @Autowired
     private LoggerRepository loggerRepository;
-    @Autowired
-    private UserRepository userRepository;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String loginClient(String username, String password) {
+    public String loginClient(LoggerDto loggerDto) {
 
-        if (username == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Campo username vuoto");
+        if (loggerDto.getUsername() == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Campo username vuoto");
 
-        Logger logger = loggerRepository.findByUsername(username);
+        Logger logger = loggerRepository.findByUsername(loggerDto.getUsername());
 
         if (logger == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Utente non trovato");
 
-        if (!this.passwordEncoder.matches(password, logger.getPassword()))
+        if (!this.passwordEncoder.matches(loggerDto.getPassword(), logger.getPassword()))
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "La password inserita non è corretta");
 
         ObjectNode loggerNode = new ObjectMapper().convertValue(logger, ObjectNode.class);
@@ -42,29 +40,8 @@ public class LoginService {
         Map claimMap = new HashMap(0);
         claimMap.put("logger", loggerNode);
 
-        return JwtProvider.createJwt(username, claimMap);
+        return JwtProvider.createJwt(loggerDto.getUsername(), claimMap);
 
     }
 
-    public String loginEmployee(String email, String password) {
-
-        if (email == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Campo email vuoto");
-
-        User user = userRepository.findByEmail(email);
-
-        if (user == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Utente non trovato");
-
-        Logger logger = loggerRepository.findByUserId(user);
-
-        if (!this.passwordEncoder.matches(password, logger.getPassword()))
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "La password inserita non è corretta");
-
-        ObjectNode loggerNode = new ObjectMapper().convertValue(logger, ObjectNode.class);
-        loggerNode.remove("password");
-        Map claimMap = new HashMap(0);
-        claimMap.put("logger", loggerNode);
-
-        return JwtProvider.createJwt(email, claimMap);
-
-    }
 }
