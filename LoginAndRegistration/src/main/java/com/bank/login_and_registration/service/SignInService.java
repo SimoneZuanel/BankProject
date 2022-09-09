@@ -71,10 +71,11 @@ public class SignInService {
         return userDto;
     }
 
-    public LoggerDto addLogger(String password) {
+    public LoggerDto addLogger(String password, UserDto userDto) {
         LoggerDto loggerDto = new LoggerDto();
         loggerDto.setUsername(generateUsername());
         loggerDto.setPassword(passwordEncoder.encode(password));
+        loggerDto.setUserId(userMapper.toEntity(userDto));
         return loggerDto;
     }
 

@@ -28,7 +28,7 @@ public class SignInController {
 
         UserDto userDto = signInService.addUser(registrationDto.getFirstName(), registrationDto.getLastName(),
                 registrationDto.getBirthDate(), registrationDto.getEmail());
-        LoggerDto loggerDto = signInService.addLogger(registrationDto.getPassword());
+        LoggerDto loggerDto = signInService.addLogger(registrationDto.getPassword(), userDto);
         signInService.addAuthority(loggerDto);
 
         accountMessageSender.sendAccountMessage(loggerDto.getUsername());
