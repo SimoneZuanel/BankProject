@@ -1,7 +1,6 @@
 package com.bank.login_and_registration.repository;
 
 import com.bank.login_and_registration.entity.Logger;
-import com.bank.login_and_registration.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,5 +12,4 @@ public interface LoggerRepository extends JpaRepository<Logger, Integer> {
 
     Logger findByUsername(String username);
 
-    Logger findByUserId(User userId);
 }

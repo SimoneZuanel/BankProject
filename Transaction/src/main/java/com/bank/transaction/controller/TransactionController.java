@@ -1,6 +1,8 @@
 package com.bank.transaction.controller;
 
+import com.bank.transaction.dto.IbanPayerDto;
 import com.bank.transaction.dto.TransactionDto;
+import com.bank.transaction.dto.WithdrawalDepositDto;
 import com.bank.transaction.service.AccountMessageSender;
 import com.bank.transaction.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,35 +23,36 @@ public class TransactionController {
         this.accountMessageSender = accountMessageSender;
     }
 
+    @CrossOrigin("*")
     @GetMapping(value = "/findLast10Transactions")
-    public List<TransactionDto> findLast10Transactions(@RequestParam String ibanPayer){
-        return transactionService.findLast10Transactions(ibanPayer);
+    public List<TransactionDto> findLast10Transactions(@RequestBody IbanPayerDto ibanPayerDto){
+        return transactionService.findLast10Transactions(ibanPayerDto.getIbanPayer());
     }
 
+    @CrossOrigin("*")
     @PostMapping (value = "/withdrawal")
-    public void withdrawal(@RequestParam String ibanPayer,
-                           @RequestParam Double amount,
-                           @RequestParam String causal) {
+    public void withdrawal(@RequestBody WithdrawalDepositDto withdrawalDepositDto) {
 
-        transactionService.withdrawal(ibanPayer, amount, causal);
+        transactionService.withdrawal
+                (withdrawalDepositDto.getIbanPayer(), withdrawalDepositDto.getAmount(), withdrawalDepositDto.getCausal());
 
         TransactionDto transactionDto = new TransactionDto();
-        transactionDto.setIbanPayer(ibanPayer);
-        transactionDto.setAmount(amount);
+        transactionDto.setIbanPayer(withdrawalDepositDto.getIbanPayer());
+        transactionDto.setAmount(withdrawalDepositDto.getAmount());
 
         accountMessageSender.sendAccountMessageWithdrawal(transactionDto);
     }
 
+    @CrossOrigin("*")
     @PostMapping (value = "/deposit")
-    public void deposit(@RequestParam("iban_payer") String ibanPayer,
-                           @RequestParam("amount") Double amount,
-                           @RequestParam("causal") String causal) {
+    public void deposit(@RequestBody WithdrawalDepositDto withdrawalDepositDto) {
 
-        transactionService.deposit(ibanPayer, amount, causal);
+        transactionService.deposit
+                (withdrawalDepositDto.getIbanPayer(), withdrawalDepositDto.getAmount(), withdrawalDepositDto.getCausal());
 
         TransactionDto transactionDto = new TransactionDto();
-        transactionDto.setIbanPayer(ibanPayer);
-        transactionDto.setAmount(amount);
+        transactionDto.setIbanPayer(withdrawalDepositDto.getIbanPayer());
+        transactionDto.setAmount(withdrawalDepositDto.getAmount());
 
         accountMessageSender.sendAccountMessageDeposit(transactionDto);
     }

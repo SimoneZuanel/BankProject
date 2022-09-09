@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitMqConfig {
+
     @Bean
     public Queue newAccount() {
         return new Queue("newAccount", false);

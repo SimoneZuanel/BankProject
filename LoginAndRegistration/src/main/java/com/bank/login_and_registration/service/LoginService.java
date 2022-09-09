@@ -1,6 +1,5 @@
 package com.bank.login_and_registration.service;
 
-import com.bank.login_and_registration.dto.LoggerDto;
 import com.bank.login_and_registration.entity.Logger;
 import com.bank.login_and_registration.jwt.JwtProvider;
 import com.bank.login_and_registration.repository.LoggerRepository;

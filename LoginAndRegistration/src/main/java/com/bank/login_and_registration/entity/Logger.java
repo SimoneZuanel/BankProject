@@ -1,7 +1,5 @@
 package com.bank.login_and_registration.entity;
 
-
-import com.bank.login_and_registration.dto.UserDto;
 import lombok.Data;
 
 import javax.persistence.*;

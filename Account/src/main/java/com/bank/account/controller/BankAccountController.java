@@ -1,6 +1,7 @@
 package com.bank.account.controller;
 
 import com.bank.account.dto.BankAccountDto;
+import com.bank.account.dto.NumberAccountDto;
 import com.bank.account.service.BankAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,26 +35,26 @@ public class BankAccountController {
 
     @CrossOrigin("*")
     @PostMapping(value = "/openingRequestBankAccount")
-    public void openingRequestBankAccount(@RequestParam String numberAccount){
-        bankAccountService.openingRequestBankAccount(numberAccount);
+    public void openingRequestBankAccount(@RequestBody NumberAccountDto numberAccountDto){
+        bankAccountService.openingRequestBankAccount(numberAccountDto.getNumberAccount());
     }
 
     @CrossOrigin("*")
     @GetMapping(value = "/closingRequestBankAccount")
-    public void closingRequestBankAccount(@RequestParam String numberAccount){
-        bankAccountService.closingRequestBankAccount(numberAccount);
+    public void closingRequestBankAccount(@RequestBody NumberAccountDto numberAccountDto){
+        bankAccountService.closingRequestBankAccount(numberAccountDto.getNumberAccount());
     }
 
     @CrossOrigin("*")
     @GetMapping(value = "/openBankAccount")
-    public void openBankAccount(@RequestParam String numberAccount){
-        bankAccountService.openBankAccount(numberAccount);
+    public void openBankAccount(@RequestBody NumberAccountDto numberAccountDto){
+        bankAccountService.openBankAccount(numberAccountDto.getNumberAccount());
     }
 
     @CrossOrigin("*")
     @DeleteMapping (value = "/closeBankAccount")
-    public void closeBankAccount(@RequestParam String numberAccount){
-        bankAccountService.closeBankAccount(numberAccount);
+    public void closeBankAccount(@RequestBody NumberAccountDto numberAccountDto){
+        bankAccountService.closeBankAccount(numberAccountDto.getNumberAccount());
     }
 
 }

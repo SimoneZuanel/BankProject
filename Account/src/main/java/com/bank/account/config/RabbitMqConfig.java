@@ -10,6 +10,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMqConfig {
     @Bean
+    public Queue newAccount() {
+        return new Queue("newAccount", false);
+    }
+
+    @Bean
     public Queue withdrawal() {
         return new Queue("withdrawal", false);
     }

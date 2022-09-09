@@ -96,8 +96,22 @@ public class TransactionService {
 
     }
 
-    public void bankTransfer(String ibanPayer, String ibanBeneficiary, Double amount, String date, String causal ){
+    /*public void BankTransfer(String ibanPayer, String ibanBeneficiary, Double amount, String causal, String Data) {
 
-    }
+        withdrawal(ibanPayer, amount, "Transfer to " + ibanBeneficiary);
+        withdrawalDto.setIbanPayer(ibanPayer);
+        withdrawalDto.setIbanBeneficiary(ibanBeneficiary);
+        withdrawalDto.setAmount(amount);
+        withdrawalDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        withdrawalDto.setCausal("Transfer to " + ibanBeneficiary);*/
+
+
+        /*deposit(ibanBeneficiary, amount, "Transfer from "+ ibanPayer);
+        /*depositDto.setIbanPayer(ibanPayer);
+        depositDto.setIbanBeneficiary(ibanBeneficiary);
+        depositDto.setAmount(amount);
+        depositDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        depositDto.setCausal("Transfer from "+ ibanPayer);
+    }*/
 
 }
