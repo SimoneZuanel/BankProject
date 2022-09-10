@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS `operation`;
+CREATE DATABASE IF NOT EXISTS `operation`;
+
+-- DROP DATABASE IF EXISTS `operation`;
+-- CREATE DATABASE IF NOT EXISTS `operation`;

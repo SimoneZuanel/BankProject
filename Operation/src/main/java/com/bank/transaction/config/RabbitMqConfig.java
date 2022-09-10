@@ -1,4 +1,4 @@
-package com.bank.login_and_registration.config;
+package com.bank.transaction.config;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -11,9 +11,13 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMqConfig {
 
     @Bean
-    public Queue newAccount() {
-        return new Queue("newAccount", false);
+    public Queue withdrawal() {
+        return new Queue("withdrawal", false);
     }
+
+    @Bean
+    public Queue deposit() { return new Queue("deposit", false); }
+
     @Bean
     public Queue userList() { return new Queue("userList", false); }
 
