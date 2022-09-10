@@ -1,7 +1,7 @@
-package com.bank.transaction.mapper;
+package com.bank.operation.mapper;
 
-import com.bank.transaction.dto.TypeOfTransactionDto;
-import com.bank.transaction.entity.TypeOfTransaction;
+import com.bank.operation.dto.TypeOfTransactionDto;
+import com.bank.operation.entity.TypeOfTransaction;
 import org.springframework.stereotype.Component;
 
 @Component

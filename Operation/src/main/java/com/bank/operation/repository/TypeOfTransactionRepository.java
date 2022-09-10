@@ -1,6 +1,6 @@
-package com.bank.transaction.repository;
+package com.bank.operation.repository;
 
-import com.bank.transaction.entity.TypeOfTransaction;
+import com.bank.operation.entity.TypeOfTransaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TypeOfTransactionRepository extends JpaRepository<TypeOfTransaction, Integer> {

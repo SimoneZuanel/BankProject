@@ -1,9 +1,9 @@
-package com.bank.transaction.controller;
+package com.bank.operation.controller;
 
-import com.bank.transaction.dto.IbanPayerDto;
-import com.bank.transaction.dto.TransactionDto;
-import com.bank.transaction.service.LoginAndRegistrationMessageSender;
-import com.bank.transaction.service.PrintsService;
+import com.bank.operation.dto.IbanPayerDto;
+import com.bank.operation.dto.TransactionDto;
+import com.bank.operation.service.LoginAndRegistrationMessageSender;
+import com.bank.operation.service.PrintService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +14,12 @@ import java.util.List;
 @RequestMapping("/")
 public class PrintController {
 
-    private PrintsService printsService;
+    private PrintService printService;
     private LoginAndRegistrationMessageSender loginAndRegistrationMessageSender;
 
     @Autowired
-    public PrintController(PrintsService printsService, LoginAndRegistrationMessageSender loginAndRegistrationMessageSender) {
-        this.printsService = printsService;
+    public PrintController(PrintService printService, LoginAndRegistrationMessageSender loginAndRegistrationMessageSender) {
+        this.printService = printService;
         this.loginAndRegistrationMessageSender = loginAndRegistrationMessageSender;
     }
 
@@ -32,6 +32,6 @@ public class PrintController {
     @CrossOrigin("*")
     @GetMapping(value = "/getLast10Transactions")
     public List<TransactionDto> getLast10Transactions(@RequestBody IbanPayerDto ibanPayerDto){
-        return printsService.getLast10Transactions(ibanPayerDto.getIbanPayer());
+        return printService.getLast10Transactions(ibanPayerDto.getIbanPayer());
     }
 }

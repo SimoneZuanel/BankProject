@@ -1,9 +1,9 @@
-package com.bank.transaction.service;
+package com.bank.operation.service;
 
-import com.bank.transaction.dto.TransactionDto;
-import com.bank.transaction.entity.Transaction;
-import com.bank.transaction.mapper.TransactionMapper;
-import com.bank.transaction.repository.TransactionRepository;
+import com.bank.operation.dto.TransactionDto;
+import com.bank.operation.entity.Transaction;
+import com.bank.operation.mapper.TransactionMapper;
+import com.bank.operation.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PrintsService {
+public class PrintService {
 
     @Autowired
     private TransactionRepository transactionRepository;

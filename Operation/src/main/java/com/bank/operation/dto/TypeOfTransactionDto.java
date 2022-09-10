@@ -1,7 +1,7 @@
-package com.bank.transaction.dto;
+package com.bank.operation.dto;
 
-import com.bank.transaction.entity.Transaction;
-import com.bank.transaction.entity.TypeOfTransactionEnum;
+import com.bank.operation.entity.Transaction;
+import com.bank.operation.entity.TypeOfTransactionEnum;
 import lombok.Data;
 
 @Data

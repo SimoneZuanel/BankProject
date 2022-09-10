@@ -1,8 +1,8 @@
-package com.bank.transaction.service;
+package com.bank.operation.service;
 
-import com.bank.transaction.dto.TransactionDto;
-import com.bank.transaction.mapper.TransactionMapper;
-import com.bank.transaction.repository.TransactionRepository;
+import com.bank.operation.dto.TransactionDto;
+import com.bank.operation.mapper.TransactionMapper;
+import com.bank.operation.repository.TransactionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

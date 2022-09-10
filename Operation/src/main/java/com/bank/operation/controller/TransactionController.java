@@ -1,15 +1,11 @@
-package com.bank.transaction.controller;
+package com.bank.operation.controller;
 
-import com.bank.transaction.dto.IbanPayerDto;
-import com.bank.transaction.dto.TransactionDto;
-import com.bank.transaction.dto.WithdrawalDepositDto;
-import com.bank.transaction.service.AccountMessageSender;
-import com.bank.transaction.service.PrintsService;
-import com.bank.transaction.service.TransactionService;
+import com.bank.operation.dto.TransactionDto;
+import com.bank.operation.dto.WithdrawalDepositDto;
+import com.bank.operation.service.AccountMessageSender;
+import com.bank.operation.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/")

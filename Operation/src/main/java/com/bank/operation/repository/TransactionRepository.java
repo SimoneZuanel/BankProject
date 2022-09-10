@@ -1,6 +1,6 @@
-package com.bank.transaction.repository;
+package com.bank.operation.repository;
 
-import com.bank.transaction.entity.Transaction;
+import com.bank.operation.entity.Transaction;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

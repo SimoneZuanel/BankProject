@@ -1,11 +1,11 @@
-package com.bank.transaction.service;
+package com.bank.operation.service;
 
-import com.bank.transaction.dto.TransactionDto;
-import com.bank.transaction.dto.TypeOfTransactionDto;
-import com.bank.transaction.entity.TypeOfTransactionEnum;
-import com.bank.transaction.mapper.TransactionMapper;
-import com.bank.transaction.mapper.TypeOfTransactionMapper;
-import com.bank.transaction.repository.TypeOfTransactionRepository;
+import com.bank.operation.dto.TransactionDto;
+import com.bank.operation.dto.TypeOfTransactionDto;
+import com.bank.operation.entity.TypeOfTransactionEnum;
+import com.bank.operation.mapper.TransactionMapper;
+import com.bank.operation.mapper.TypeOfTransactionMapper;
+import com.bank.operation.repository.TypeOfTransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

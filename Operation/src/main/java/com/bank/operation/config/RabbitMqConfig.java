@@ -1,4 +1,4 @@
-package com.bank.transaction.config;
+package com.bank.operation.config;
 
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

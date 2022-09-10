@@ -1,4 +1,4 @@
-package com.bank.transaction.entity;
+package com.bank.operation.entity;
 
 import lombok.Data;
 

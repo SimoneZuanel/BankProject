@@ -1,4 +1,4 @@
-package com.bank.transaction.dto;
+package com.bank.operation.dto;
 
 import lombok.Data;
 
