@@ -2,6 +2,8 @@ package com.bank.login_and_registration.dto;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class UserDto {
 

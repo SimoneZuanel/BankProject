@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -24,7 +25,6 @@ public class SignInService {
     final static Integer usernameLength = 7;
 
     @Autowired UserRepository userRepository;
-
     @Autowired UserMapper userMapper;
     @Autowired LoggerRepository loggerRepository;
     @Autowired LoggerMapper loggerMapper;
@@ -33,12 +33,15 @@ public class SignInService {
     @Autowired PasswordEncoder passwordEncoder;
 
 
-    public UserDto addUser(String firstName, String lastName, String birthDate, String email) {
+    public UserDto addUser(String firstName, String lastName, Date birthDate, String email) {
+
+        SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy");
+        String strDate = sm.format(birthDate);
 
         if(firstName == null || lastName == null || birthDate == null || email == null)
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Tutti i campi devono essere riempiti");
 
-        StringTokenizer st = new StringTokenizer(birthDate, "/");
+        StringTokenizer st = new StringTokenizer(strDate, "/");
         Integer day= Integer.parseInt(st.nextToken());
         if(day==null)
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Formato sbagliato");
@@ -66,7 +69,7 @@ public class SignInService {
         UserDto userDto = new UserDto();
         userDto.setFirstName(firstName);
         userDto.setLastName(lastName);
-        userDto.setBirthDate(birthDate);
+        userDto.setBirthDate(strDate);
         userDto.setEmail(email);
         return userDto;
     }
