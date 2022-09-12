@@ -24,6 +24,9 @@ public class TransactionService {
     @Autowired
     private TypeOfTransactionMapper typeOfTransactionMapper;
 
+    @Autowired
+    private AccountMessageSender accountMessageSender;
+
 
 
     public void withdrawal(String ibanPayer, Double amount, String causal){
@@ -63,22 +66,22 @@ public class TransactionService {
 
     }
 
-    /*public void BankTransfer(String ibanPayer, String ibanBeneficiary, Double amount, String causal, String Data) {
+    public void bankTransfer(String ibanPayer, String ibanBeneficiary, Double amount, String causal) {
 
-        withdrawal(ibanPayer, amount, "Transfer to " + ibanBeneficiary);
-        withdrawalDto.setIbanPayer(ibanPayer);
-        withdrawalDto.setIbanBeneficiary(ibanBeneficiary);
-        withdrawalDto.setAmount(amount);
-        withdrawalDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        withdrawalDto.setCausal("Transfer to " + ibanBeneficiary);*/
+        TransactionDto bankTransferDto = new TransactionDto();
+        bankTransferDto.setIbanPayer(ibanPayer);
+        bankTransferDto.setIbanBeneficiary(ibanBeneficiary);
+        bankTransferDto.setAmount(amount);
+        bankTransferDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        bankTransferDto.setCausal(causal);
+        bankTransferDto.setState("loading");
 
+        TypeOfTransactionDto typeOfTransactionDto = new TypeOfTransactionDto();
+        typeOfTransactionDto.setTypeOfTransactionEnum(TypeOfTransactionEnum.BANK_TRANSFER);
+        typeOfTransactionDto.setTransactionId(transactionMapper.toEntity(bankTransferDto));
 
-        /*deposit(ibanBeneficiary, amount, "Transfer from "+ ibanPayer);
-        /*depositDto.setIbanPayer(ibanPayer);
-        depositDto.setIbanBeneficiary(ibanBeneficiary);
-        depositDto.setAmount(amount);
-        depositDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        depositDto.setCausal("Transfer from "+ ibanPayer);
-    }*/
+        typeOfTransactionRepository.save(typeOfTransactionMapper.toEntity(typeOfTransactionDto));
+
+    }
 
 }

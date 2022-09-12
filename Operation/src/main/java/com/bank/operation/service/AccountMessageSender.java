@@ -58,5 +58,19 @@ public class AccountMessageSender {
         return true;
     }
 
+    public Boolean sendAccountMessageBankTransfer(TransactionDto transactionDto) {
+
+        logger.info("Messaggio inviato");
+
+        String response = (String) rabbitTemplate.convertSendAndReceive("bankTransfer", transactionDto);
+
+        TransactionDto newTransactionDto = transactionMapper.toDto(transactionRepository.findByState("loading"));
+
+        newTransactionDto.setState(response);
+
+        transactionRepository.save(transactionMapper.toEntity(newTransactionDto));
+
+        return true;
+    }
 
 }

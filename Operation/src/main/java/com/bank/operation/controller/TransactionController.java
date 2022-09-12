@@ -1,5 +1,6 @@
 package com.bank.operation.controller;
 
+import com.bank.operation.dto.BankTransferDto;
 import com.bank.operation.dto.TransactionDto;
 import com.bank.operation.dto.WithdrawalDepositDto;
 import com.bank.operation.service.AccountMessageSender;
@@ -47,6 +48,22 @@ public class TransactionController {
         transactionDto.setAmount(withdrawalDepositDto.getAmount());
 
         accountMessageSender.sendAccountMessageDeposit(transactionDto);
+    }
+
+    @CrossOrigin("*")
+    @PostMapping (value = "/bankTransfer")
+    public void bankTransfer(@RequestBody BankTransferDto bankTransferDto) {
+
+        transactionService.bankTransfer(bankTransferDto.getIbanPayer(),
+               bankTransferDto.getIbanBeneficiary(), bankTransferDto.getAmount(), bankTransferDto.getCausal());
+
+        TransactionDto transactionDto = new TransactionDto();
+        transactionDto.setIbanPayer(bankTransferDto.getIbanPayer());
+        transactionDto.setIbanBeneficiary(bankTransferDto.getIbanBeneficiary());
+        transactionDto.setAmount(bankTransferDto.getAmount());
+
+        accountMessageSender.sendAccountMessageBankTransfer(transactionDto);
+
     }
 
 }

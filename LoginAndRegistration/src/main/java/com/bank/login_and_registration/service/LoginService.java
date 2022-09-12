@@ -1,5 +1,6 @@
 package com.bank.login_and_registration.service;
 
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bank.login_and_registration.entity.Logger;
 import com.bank.login_and_registration.jwt.JwtProvider;
 import com.bank.login_and_registration.repository.LoggerRepository;
@@ -23,7 +24,7 @@ public class LoginService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String login(String username, String password) {
+    public String createToken(String username, String password) {
 
         if (username == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Campo username vuoto");
 
@@ -41,6 +42,10 @@ public class LoginService {
 
         return JwtProvider.createJwt(username, claimMap);
 
+    }
+
+    public DecodedJWT verifyToken(String token){
+        return JwtProvider.verifyJwt(token);
     }
 
 }

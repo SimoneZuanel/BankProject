@@ -92,4 +92,24 @@ public class AccountMessageReceive {
 
     }
 
+    @RabbitListener(queues = "bankTransfer")
+    public String receiveTransactionMessageBankTransfer (MessageTransactionDto messageTransactionDto){
+
+        BankAccountDto bankAccountDto =
+                bankAccountMapper.toDto(bankAccountRepository.findByIban(messageTransactionDto.getIbanPayer()));
+
+        if (bankAccountDto == null) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account non esiste");
+
+        } else if (messageTransactionDto.getAmount() > 0) {
+            bankAccountDto.setBalance(bankAccountDto.getBalance() + messageTransactionDto.getAmount());
+            bankAccountRepository.save(bankAccountMapper.toEntity(bankAccountDto));
+            return "success";
+
+        } else {
+            return "failed";
+        }
+
+    }
+
 }

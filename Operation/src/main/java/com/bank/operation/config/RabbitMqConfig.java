@@ -19,6 +19,9 @@ public class RabbitMqConfig {
     public Queue deposit() { return new Queue("deposit", false); }
 
     @Bean
+    public Queue bankTransfer() { return new Queue("bankTransfer", false); }
+
+    @Bean
     public Queue userList() { return new Queue("userList", false); }
 
     @Bean
