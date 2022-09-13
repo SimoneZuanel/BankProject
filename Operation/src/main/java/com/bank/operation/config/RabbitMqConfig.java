@@ -25,6 +25,9 @@ public class RabbitMqConfig {
     public Queue userList() { return new Queue("userList", false); }
 
     @Bean
+    public Queue ibanList() { return new Queue("ibanList", false); }
+
+    @Bean
     public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(producerJackson2MessageConverter());

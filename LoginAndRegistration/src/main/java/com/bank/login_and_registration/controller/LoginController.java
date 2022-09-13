@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/login")
 public class LoginController {
     private LoginService loginService;
 
@@ -17,12 +17,6 @@ public class LoginController {
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
-
-    /*@CrossOrigin("*")
-    @PostMapping(value = "/login")
-    public String login(@RequestBody LoginDto loginDto) {
-        return this.loginService.login(loginDto.getUsername(), loginDto.getPassword());
-    }*/
 
     @CrossOrigin("*")
     @PostMapping(value = "/login")

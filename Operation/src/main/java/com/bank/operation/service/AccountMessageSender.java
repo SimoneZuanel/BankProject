@@ -9,6 +9,8 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 public class AccountMessageSender {
 
@@ -71,6 +73,13 @@ public class AccountMessageSender {
         transactionRepository.save(transactionMapper.toEntity(newTransactionDto));
 
         return true;
+    }
+
+    public ArrayList<String> sendIbanListMessage(String username) {
+
+        logger.info("Messaggio inviato");
+
+        return (ArrayList<String>) rabbitTemplate.convertSendAndReceive("ibanList", username);
     }
 
 }

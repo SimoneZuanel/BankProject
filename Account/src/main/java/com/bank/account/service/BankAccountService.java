@@ -45,30 +45,33 @@ public class BankAccountService {
         return bankAccountDto.getBalance();
     }
 
-    public void openingRequestBankAccount(String numberAccount) {
+    public void openingRequestBankAccount(String numberAccount, Double amount) {
 
         BankAccount oldBankAccount = bankAccountRepository.findByNumberAccount(numberAccount);
 
         BankAccountDto newBankAccountDto = new BankAccountDto();
 
-        if (oldBankAccount == null)
+        if (oldBankAccount == null) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
                     "account non trovato, non è possibile aprire un nuovo conto");
-        else
 
-        newBankAccountDto.setUsername(oldBankAccount.getUsername());
-        newBankAccountDto.setBalance(0.0);
-        List<String> numberAccountsList = bankAccountRepository.findNumberAccounts();
+        } else {
 
-        while (numberAccountsList.contains(utilAccountService.getAccountNumber())){
-            utilAccountService.generateIban();
+            newBankAccountDto.setUsername(oldBankAccount.getUsername());
+            newBankAccountDto.setBalance(amount);
+            List<String> numberAccountsList = bankAccountRepository.findNumberAccounts();
+
+            do {
+                utilAccountService.generateIban();
+            }
+            while (numberAccountsList.contains(utilAccountService.getAccountNumber()));
+
+            newBankAccountDto.setIban(utilAccountService.getIban());
+            newBankAccountDto.setNumberAccount(utilAccountService.getAccountNumber());
+            newBankAccountDto.setState(BankAccountEnum.OPENING_REQUEST);
+
+            bankAccountRepository.save(bankAccountMapper.toEntity(newBankAccountDto));
         }
-
-        newBankAccountDto.setIban(utilAccountService.getIban());
-        newBankAccountDto.setNumberAccount(utilAccountService.getAccountNumber());
-        newBankAccountDto.setState(BankAccountEnum.OPENING_REQUEST);
-
-        bankAccountRepository.save(bankAccountMapper.toEntity(newBankAccountDto));
     }
 
     public void closingRequestBankAccount(String numberAccount) {
@@ -90,15 +93,18 @@ public class BankAccountService {
 
     }
 
-    public void openBankAccount(String numberAccount) {
+    public void openFirstBankAccount(String numberAccount) {
         BankAccountDto bankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(numberAccount));
 
-        if(bankAccount.getState() == BankAccountEnum.INACTIVE || bankAccount.getState() == BankAccountEnum.OPENING_REQUEST){
+        if(bankAccount.getState() == BankAccountEnum.INACTIVE) {
             bankAccount.setState(BankAccountEnum.ACTIVE);
             bankAccountRepository.save(bankAccountMapper.toEntity(bankAccount));
 
         }else if (bankAccount.getState() == BankAccountEnum.ACTIVE){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è già attivo");
+
+        }else if (bankAccount.getState() == BankAccountEnum.OPENING_REQUEST) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è in fase di apertura");
 
         }else{
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è in fase di chiusura");
@@ -117,6 +123,30 @@ public class BankAccountService {
         else
             bankAccountDto = bankAccountMapper.toDto(bankAccount);
             bankAccountRepository.delete(bankAccountMapper.toEntity(bankAccountDto));
+    }
+
+    public void openAnotherBankAccount(String oldNumberAccount, String newNumberAccount){
+
+        BankAccountDto oldBankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(oldNumberAccount));
+        BankAccountDto newBankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(newNumberAccount));
+
+        if(newBankAccount.getState() == BankAccountEnum.OPENING_REQUEST && oldBankAccount.getBalance() > newBankAccount.getBalance()) {
+            newBankAccount.setState(BankAccountEnum.ACTIVE);
+            oldBankAccount.setBalance(oldBankAccount.getBalance() - newBankAccount.getBalance());
+            bankAccountRepository.save(bankAccountMapper.toEntity(newBankAccount));
+            bankAccountRepository.save(bankAccountMapper.toEntity(oldBankAccount));
+
+        }else if (newBankAccount.getState() == BankAccountEnum.ACTIVE) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è già attivo");
+
+        } else if (newBankAccount.getState() == BankAccountEnum.CLOSING_REQUEST && newBankAccount.getState() == BankAccountEnum.INACTIVE) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "il conto è inattivo o in fase di chiusura");
+
+        }else{
+            bankAccountRepository.delete(bankAccountMapper.toEntity(newBankAccount));
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "il trasferimento di denaro non è andato a buon fine");
+        }
+
     }
 
 }

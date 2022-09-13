@@ -7,6 +7,7 @@ import com.bank.operation.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,9 +21,6 @@ public class PrintService {
     @Autowired
     private TransactionMapper transactionMapper;
 
-
-
-
     public List<TransactionDto> getLast10Transactions(String iban){
         List<Transaction> transactionList =
                 transactionRepository.findFirst10ByDateAndIbanPayerAndStateOrderByIdDesc
@@ -32,6 +30,22 @@ public class PrintService {
 
         for(Transaction transaction : transactionList) {
             transactionDtoList.add(transactionMapper.toDto(transaction));
+        }
+
+        return transactionDtoList;
+    }
+
+    public List<TransactionDto> getAllTransactions(ArrayList<String> ibanList, String startDate, String endDate){
+
+        List<TransactionDto> transactionDtoList = new ArrayList<>();
+
+        for(String iban : ibanList){
+           List<Transaction> transactionList =
+                   transactionRepository.findAllByDateIsGreaterThanEqualAndDateIsLessThanEqualAndIbanPayer(startDate, endDate, iban);
+
+            for(Transaction transaction : transactionList) {
+                transactionDtoList.add(transactionMapper.toDto(transaction));
+            }
         }
 
         return transactionDtoList;

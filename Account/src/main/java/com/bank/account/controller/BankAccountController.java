@@ -1,6 +1,8 @@
 package com.bank.account.controller;
 
 import com.bank.account.dto.BankAccountDto;
+import com.bank.account.dto.NewAnotherBankAccountDto;
+import com.bank.account.dto.NewBankAccountDto;
 import com.bank.account.dto.NumberAccountDto;
 import com.bank.account.service.BankAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/api/account")
 public class BankAccountController {
 
     private BankAccountService bankAccountService;
@@ -28,27 +30,34 @@ public class BankAccountController {
     }
 
     @CrossOrigin("*")
-    @GetMapping(value = "/getBalance")
-    public Double getBalance(@RequestParam String iban){
+    @GetMapping(value = "/{iban}/getBalance")
+    public Double getBalance(@PathVariable String iban){
         return bankAccountService.getBalance(iban);
     }
 
     @CrossOrigin("*")
     @PostMapping(value = "/openingRequestBankAccount")
-    public void openingRequestBankAccount(@RequestBody NumberAccountDto numberAccountDto){
-        bankAccountService.openingRequestBankAccount(numberAccountDto.getNumberAccount());
+    public void openingRequestBankAccount(@RequestBody NewBankAccountDto newBankAccountDto){
+        bankAccountService.openingRequestBankAccount(newBankAccountDto.getNumberAccount(), newBankAccountDto.getAmount());
     }
 
     @CrossOrigin("*")
-    @GetMapping(value = "/closingRequestBankAccount")
+    @PutMapping(value = "/closingRequestBankAccount")
     public void closingRequestBankAccount(@RequestBody NumberAccountDto numberAccountDto){
         bankAccountService.closingRequestBankAccount(numberAccountDto.getNumberAccount());
     }
 
     @CrossOrigin("*")
-    @GetMapping(value = "/openBankAccount")
-    public void openBankAccount(@RequestBody NumberAccountDto numberAccountDto){
-        bankAccountService.openBankAccount(numberAccountDto.getNumberAccount());
+    @PutMapping(value = "/openFirstBankAccount")
+    public void openFirstBankAccount(@RequestBody NumberAccountDto numberAccountDto){
+        bankAccountService.openFirstBankAccount(numberAccountDto.getNumberAccount());
+    }
+
+    @CrossOrigin("*")
+    @PutMapping(value = "/openAnotherBankAccount")
+    public void openAnotherBankAccount(@RequestBody NewAnotherBankAccountDto newAnotherBankAccountDto){
+        bankAccountService.openAnotherBankAccount
+                (newAnotherBankAccountDto.getOldBankAccount(), newAnotherBankAccountDto.getNewBankAccount());
     }
 
     @CrossOrigin("*")

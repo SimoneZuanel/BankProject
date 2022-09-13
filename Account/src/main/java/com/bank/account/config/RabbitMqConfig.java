@@ -27,6 +27,8 @@ public class RabbitMqConfig {
     @Bean
     public Queue bankTransfer() { return new Queue("bankTransfer", false); }
 
+    @Bean
+    public Queue ibanList() { return new Queue("ibanList", false); }
 
     @Bean
     public RabbitTemplate rabbitTemplate(final ConnectionFactory connectionFactory) {
