@@ -5,59 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="081c7b02-ae80-4544-a000-987d184dd928" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/dto/NewAnotherBankAccountDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/dto/NewBankAccountDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/service/OperationMessageReceive.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/bank/eurekaserver/EurekaServerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/bank/eurekaserver/EurekaserverApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/bank/eurekaserver/EurekaServerApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/HELP.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/target/classes/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/ApiGatewayApplication.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/config/GatewayConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/exception/JwtTokenMalformedException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/exception/JwtTokenMissingException.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/filter/JwtAuthenticationFilter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/util/JwtUtil.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/dto/GetAllTransactionDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/config/RabbitMqConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/config/RabbitMqConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/controller/BankAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/controller/BankAccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/repository/BankAccountRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/repository/BankAccountRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/service/AccountMessageReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/service/LoginAndRegistrationMessageReceive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/service/BankAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/service/BankAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Account/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/AccountApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/AccountApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Account/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/ApiGatewayApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/config/GatewayConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/exception/JwtTokenMalformedException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/exception/JwtTokenMissingException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/filter/JwtAuthenticationFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/util/JwtUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/LoginAndSignInApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/LoginAndSignInApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/SignInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/OperationMessageReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/OperationMessageReceive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/config/RabbitMqConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/config/RabbitMqConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/controller/PrintController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/controller/PrintController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/entity/TypeOfTransactionEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/entity/TypeOfTransactionEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/repository/TransactionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/service/AccountMessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/service/AccountMessageSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/service/PrintService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/service/PrintService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,22 +55,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Simone Zuanel/Documents/Stage Aubay/BankProject/Eurekaserver",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "spring.configuration.checksum": "d8f95611a1b35fef6bf35e9d80de1fb7"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Simone Zuanel/Documents/Stage Aubay/BankProject/Eurekaserver&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;d8f95611a1b35fef6bf35e9d80de1fb7&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ACTIVE_PROFILES" />
@@ -121,7 +90,8 @@
       <option name="presentableId" value="Default" />
       <updated>1663056116235</updated>
       <workItem from="1663056118234" duration="2237000" />
-      <workItem from="1663068222786" duration="2694000" />
+      <workItem from="1663068222786" duration="5772000" />
+      <workItem from="1663141173968" duration="924000" />
     </task>
     <servers />
   </component>
