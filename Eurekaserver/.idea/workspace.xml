@@ -5,49 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="081c7b02-ae80-4544-a000-987d184dd928" name="Changes" comment="eureka">
-      <change afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/dto/UserBankAccountDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/service/LoginAndRegistrationMessageSender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LoginAndRegistration/mvnw - Copia" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LoginAndRegistration/mvnw - Copia.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/dto/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/AccountMessageReceive.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Account/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/AccountApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/AccountApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/config/RabbitMqConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/config/RabbitMqConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/controller/BankAccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/controller/BankAccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/service/LoginAndRegistrationMessageReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/account/service/LoginAndRegistrationMessageReceive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Account/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/ApiGatewayApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/config/GatewayConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/exception/JwtTokenMalformedException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/exception/JwtTokenMissingException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/filter/JwtAuthenticationFilter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/com/example/springcloud/gateway/apiGateway/util/JwtUtil.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/LoginAndSignInApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/LoginAndSignInApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/config/RabbitMqConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/config/RabbitMqConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/SignInController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/dto/RegistrationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/dto/RegistrationDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/src/main/java/com/bank/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/AccountMessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/AccountMessageSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/OperationMessageReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/OperationMessageReceive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/SignInService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/SignInService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Operation/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/OperationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/OperationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/repository/TransactionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/java/com/bank/operation/repository/TransactionRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Operation/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Operation/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +80,8 @@
       <workItem from="1663068222786" duration="5772000" />
       <workItem from="1663141173968" duration="2010000" />
       <workItem from="1663163378546" duration="1269000" />
-      <workItem from="1663232674157" duration="303000" />
+      <workItem from="1663232674157" duration="2269000" />
+      <workItem from="1663244571949" duration="725000" />
     </task>
     <task id="LOCAL-00001" summary="eureka">
       <created>1663146375242</created>
@@ -135,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663146663085</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="eureka">
+      <created>1663233026303</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1663233026303</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
