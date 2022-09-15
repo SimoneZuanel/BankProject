@@ -15,13 +15,11 @@ public class AccountMessageSender {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public Boolean sendAccountMessage(String username) {
+    public Boolean sendNewAccountMessage(String username) {
 
         logger.info("Messaggio inviato");
 
-        Boolean response = (Boolean) rabbitTemplate.convertSendAndReceive("newAccount", username);
-
-        return response;
+        return (Boolean) rabbitTemplate.convertSendAndReceive("newAccount", username);
     }
 }
 

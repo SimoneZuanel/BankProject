@@ -3,6 +3,8 @@ package com.bank.login_and_registration.service;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.bank.login_and_registration.entity.Logger;
 import com.bank.login_and_registration.jwt.JwtProvider;
+import com.bank.login_and_registration.mapper.LoggerMapper;
+import com.bank.login_and_registration.mapper.UserMapper;
 import com.bank.login_and_registration.repository.LoggerRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -20,6 +22,12 @@ public class LoginService {
 
     @Autowired
     private LoggerRepository loggerRepository;
+
+    @Autowired
+    private LoggerMapper loggerMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;

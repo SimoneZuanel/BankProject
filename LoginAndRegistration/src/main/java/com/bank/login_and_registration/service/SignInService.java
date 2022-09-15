@@ -2,9 +2,8 @@ package com.bank.login_and_registration.service;
 
 import com.bank.login_and_registration.dto.AuthorityDto;
 import com.bank.login_and_registration.dto.LoggerDto;
-import com.bank.login_and_registration.dto.UserDto;
+import com.bank.dto.UserDto;
 import com.bank.login_and_registration.entity.AuthorityEnum;
-import com.bank.login_and_registration.entity.User;
 import com.bank.login_and_registration.mapper.AuthorityMapper;
 import com.bank.login_and_registration.mapper.LoggerMapper;
 import com.bank.login_and_registration.mapper.UserMapper;
@@ -40,7 +39,7 @@ public class SignInService {
         String strDate = sm.format(birthDate);
 
         if(firstName == null || lastName == null || birthDate == null || email == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Tutti i campi devono essere riempiti");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tutti i campi devono essere riempiti");
 
         StringTokenizer st = new StringTokenizer(strDate, "/");
         Integer day= Integer.parseInt(st.nextToken());

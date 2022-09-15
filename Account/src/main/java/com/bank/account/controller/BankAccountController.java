@@ -1,10 +1,8 @@
 package com.bank.account.controller;
 
-import com.bank.account.dto.BankAccountDto;
-import com.bank.account.dto.NewAnotherBankAccountDto;
-import com.bank.account.dto.NewBankAccountDto;
-import com.bank.account.dto.NumberAccountDto;
+import com.bank.account.dto.*;
 import com.bank.account.service.BankAccountService;
+import com.bank.account.service.LoginAndRegistrationMessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +14,12 @@ import java.util.List;
 public class BankAccountController {
 
     private BankAccountService bankAccountService;
+    private LoginAndRegistrationMessageSender loginAndRegistrationMessageSender;
 
     @Autowired
-    public BankAccountController(BankAccountService bankAccountService) {
+    public BankAccountController(BankAccountService bankAccountService, LoginAndRegistrationMessageSender loginAndRegistrationMessageSender) {
         this.bankAccountService = bankAccountService;
+        this.loginAndRegistrationMessageSender = loginAndRegistrationMessageSender;
     }
 
 
@@ -27,6 +27,12 @@ public class BankAccountController {
     @GetMapping(value = "/getBankAccounts")
     public List<BankAccountDto> findAllBankAccounts(){
         return bankAccountService.findAllBankAccounts();
+    }
+
+    @CrossOrigin("*")
+    @GetMapping(value = "/{username}")
+    public UserBankAccountDto getUserByUsername(@PathVariable String username){
+        return loginAndRegistrationMessageSender.sendUserMessage(username);
     }
 
     @CrossOrigin("*")

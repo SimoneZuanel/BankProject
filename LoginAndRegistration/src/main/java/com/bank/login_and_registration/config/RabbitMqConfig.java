@@ -15,6 +15,10 @@ public class RabbitMqConfig {
         return new Queue("newAccount", false);
     }
     @Bean
+    public Queue sendUser() {
+        return new Queue("sendUser", false);
+    }
+    @Bean
     public Queue userList() { return new Queue("userList", false); }
 
     @Bean

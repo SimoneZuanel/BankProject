@@ -1,7 +1,7 @@
 package com.bank.login_and_registration.controller;
 
 import com.bank.login_and_registration.dto.LoginDto;
-import com.bank.login_and_registration.jwt.JwtProvider;
+import com.bank.login_and_registration.service.AccountMessageSender;
 import com.bank.login_and_registration.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
     private LoginService loginService;
 
+    private AccountMessageSender accountMessageSender;
+
     @Autowired
-    public LoginController(LoginService loginService) {
+    public LoginController(LoginService loginService, AccountMessageSender accountMessageSender) {
         this.loginService = loginService;
+        this.accountMessageSender = accountMessageSender;
     }
 
     @CrossOrigin("*")

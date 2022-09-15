@@ -11,8 +11,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
 
     List<Transaction> findFirst10ByDateAndIbanPayerAndStateOrderByIdDesc(String date, String iban, String state);
 
-    //List<Transaction> findAllByDateIsGreaterThanAndDateIsLessThanAndIbanPayer(String startDate, String endDate, String ibanPayer);
-
     List<Transaction> findAllByDateIsGreaterThanEqualAndDateIsLessThanEqualAndIbanPayer
             (String startDate, String endDate, String ibanPayer);
 }
