@@ -65,11 +65,11 @@ public class LoginService {
 
     }
 
-    public List<String> getRoles(String username) {
+    public ArrayList<String> getRoles(String username) {
 
         List<Authority> authorityList = authorityRepository.findAllByUsername(username);
 
-        List<String> authorityDtoList = new ArrayList<>();
+        ArrayList<String> authorityDtoList = new ArrayList<>();
 
         for (Authority authority : authorityList) {
             AuthorityDto authorityDto = authorityMapper.toDto(authority);

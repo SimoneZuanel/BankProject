@@ -9,9 +9,9 @@ public class ResponseDto {
 
     private String token;
 
-    private List<String> roles;
+    private String roles;
 
-    public ResponseDto(String token, List<String> roles) {
+    public ResponseDto(String token, String roles) {
         this.token = token;
         this.roles = roles;
     }

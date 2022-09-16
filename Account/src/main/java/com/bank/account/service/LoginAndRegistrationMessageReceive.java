@@ -22,7 +22,7 @@ public class LoginAndRegistrationMessageReceive {
 
 
     @RabbitListener(queues = "newAccount")
-    public BankAccountDto receiveUserMessage(String username) {
+    public Boolean receiveUserMessage(String username) {
         try {
             BankAccountDto bankAccountDto = new BankAccountDto();
             bankAccountDto.setUsername(username);
@@ -40,11 +40,11 @@ public class LoginAndRegistrationMessageReceive {
 
             bankAccountRepository.save(bankAccountMapper.toEntity(bankAccountDto));
 
-            return bankAccountDto;
+            return true;
 
         } catch (Exception e) {
             System.out.println("Error during BankAccount registration");
-            return null;
+            return false;
         }
 
     }

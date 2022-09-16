@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -34,9 +36,9 @@ public class LoginController {
 
         final String token = this.loginService.createToken(loginDto.getUsername(), loginDto.getPassword());
 
-        List<String> roles = loginService.getRoles(loginDto.getUsername());
+        ArrayList<String> roles = loginService.getRoles(loginDto.getUsername());
 
-        return ResponseEntity.ok(new ResponseDto(token, roles));
+        return ResponseEntity.ok(new ResponseDto(token, roles.stream().collect(Collectors.joining(","))));
     }
 
 }
