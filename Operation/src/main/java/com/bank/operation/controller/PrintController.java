@@ -29,19 +29,17 @@ public class PrintController {
         this.accountMessageSender = accountMessageSender;
     }
 
-    @CrossOrigin("*")
+
     @GetMapping(value = "/getAllUsers")
     public ArrayList getAllUsers(){
         return loginAndRegistrationMessageSender.sendUserListMessage(new ArrayList<>());
     }
 
-    @CrossOrigin("*")
     @GetMapping(value = "/getLast10Transactions")
     public List<TransactionDto> getLast10Transactions(@RequestBody IbanPayerDto ibanPayerDto){
         return printService.getLast10Transactions(ibanPayerDto.getIbanPayer());
     }
 
-    @CrossOrigin("*")
     @PostMapping(value = "/getAllTransactions")
     public List<TransactionDto> getAllTransactions(@RequestBody GetAllTransactionDto getAllTransactionDto){
 

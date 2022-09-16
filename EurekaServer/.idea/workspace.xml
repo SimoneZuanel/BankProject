@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="081c7b02-ae80-4544-a000-987d184dd928" name="Changes" comment="eureka">
+      <change afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/dto/AuthorityDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/dto/ResponseDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/repository/AuthorityRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Account/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Account/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../Gateway/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gateway/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/LoginAndSignInApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/LoginAndSignInApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/config/RabbitMqConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/config/RabbitMqConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/controller/SignInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/controller/SignInController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/dto/AuthorityDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/dto/LoggerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/dto/LoggerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/dto/LoginDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/dto/LoginDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/dto/RegistrationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/dto/RegistrationDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/entity/Authority.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/entity/Authority.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/entity/AuthorityEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/entity/AuthorityEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/entity/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/entity/Logger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/jwt/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/jwt/JwtProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/mapper/AuthorityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/mapper/AuthorityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/mapper/LoggerMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/mapper/LoggerMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/repository/AuthorityRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/repository/LoggerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/repository/LoggerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/AccountMessageReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/service/AccountMessageReceive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/AccountMessageSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/service/AccountMessageSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/LoginService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/OperationMessageReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/service/OperationMessageReceive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/login_and_registration/service/SignInService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/main/java/com/bank/loginAndRegistration/service/SignInService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../LoginAndRegistration/src/test/java/com/bank/login_and_registration/LoginAndSignInApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../LoginAndRegistration/src/test/java/com/bank/loginAndRegistration/LoginAndSignInApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2EhmJ43GiJaXSeQg4G1UHMlDP7g" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Simone Zuanel/Documents/Stage Aubay/BankProject/Eurekaserver&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;d8f95611a1b35fef6bf35e9d80de1fb7&quot;
+  }
+}</component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Simone Zuanel\Documents\Stage Aubay\BankProject\Eurekaserver" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <option name="ACTIVE_PROFILES" />
+      <module name="eurekaserver" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.bank.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="081c7b02-ae80-4544-a000-987d184dd928" name="Changes" comment="" />
+      <created>1663056116235</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663056116235</updated>
+      <workItem from="1663056118234" duration="2237000" />
+      <workItem from="1663068222786" duration="5772000" />
+      <workItem from="1663141173968" duration="2010000" />
+      <workItem from="1663163378546" duration="1269000" />
+      <workItem from="1663232674157" duration="2269000" />
+      <workItem from="1663244571949" duration="1367000" />
+      <workItem from="1663316343684" duration="770000" />
+    </task>
+    <task id="LOCAL-00001" summary="eureka">
+      <created>1663146375242</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1663146375242</updated>
+    </task>
+    <task id="LOCAL-00002" summary="eureka">
+      <created>1663146663085</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1663146663085</updated>
+    </task>
+    <task id="LOCAL-00003" summary="eureka">
+      <created>1663233026303</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1663233026303</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="eureka" />
+    <option name="LAST_COMMIT_MESSAGE" value="eureka" />
+  </component>
+</project>

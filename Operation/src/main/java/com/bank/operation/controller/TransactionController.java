@@ -22,7 +22,6 @@ public class TransactionController {
     }
 
 
-    @CrossOrigin("*")
     @PostMapping (value = "/withdrawal")
     public void withdrawal(@RequestBody WithdrawalDepositDto withdrawalDepositDto) {
 
@@ -36,7 +35,6 @@ public class TransactionController {
         accountMessageSender.sendAccountMessageWithdrawal(transactionDto);
     }
 
-    @CrossOrigin("*")
     @PostMapping (value = "/deposit")
     public void deposit(@RequestBody WithdrawalDepositDto withdrawalDepositDto) {
 
@@ -50,7 +48,6 @@ public class TransactionController {
         accountMessageSender.sendAccountMessageDeposit(transactionDto);
     }
 
-    @CrossOrigin("*")
     @PostMapping (value = "/bankTransfer")
     public void bankTransfer(@RequestBody BankTransferDto bankTransferDto) {
 

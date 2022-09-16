@@ -3,7 +3,6 @@ package com.bank.account.service;
 import com.bank.account.dto.BankAccountDto;
 import com.bank.account.dto.MessageTransactionDto;
 import com.bank.account.entity.BankAccount;
-import com.bank.account.entity.BankAccountEnum;
 import com.bank.account.mapper.BankAccountMapper;
 import com.bank.account.repository.BankAccountRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
