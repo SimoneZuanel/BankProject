@@ -30,7 +30,6 @@ public class LoginController {
         this.accountMessageSender = accountMessageSender;
     }
 
-
     @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
 

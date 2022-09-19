@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -22,6 +23,8 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
     @Autowired
     private JwtUtil jwtUtil;
+
+    private ArrayList<String> stringArrayList;
 
     private String urlToCheck = "";
 
@@ -54,6 +57,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
             }
 
             urlToCheck = request.getURI().toString();
+
             String numberToPass = "";
             for (int i = 21; i < urlToCheck.length(); i++) {
                 if (urlToCheck.charAt(i) >= 48 && urlToCheck.charAt(i) <= 57) {
@@ -65,6 +69,8 @@ public class JwtAuthenticationFilter implements GatewayFilter {
                     }
                 }
             }
+
+            stringArrayList = new ArrayList<>(List.of(numberToPass.split(",")));
 
             Claims claims = jwtUtil.getClaims(token);
 
@@ -84,7 +90,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
             final List<String> apiEndpointsClient = List.of(
 
-                    "/api/account/{username}",
+                    "/api/account/" + stringArrayList.get(0),
 
                     "/api/account/{iban}/getBalance",
 
@@ -111,13 +117,13 @@ public class JwtAuthenticationFilter implements GatewayFilter {
             for (String s : apiEndpointsClient) {
                 String control = "http://localhost:8083" + s;
                 if (control.equals(urlToCheck)) {
-                    if (isApiSecured.test(request)) {
+                   if (isApiSecured.test(request)) {
                         if (!((String) claims.get("authorities")).contains("ROLE_CLIENT")) {
                             ServerHttpResponse response = exchange.getResponse();
                             response.setStatusCode(HttpStatus.UNAUTHORIZED);
                             return response.setComplete();
                         }
-                    }
+                   }
                     exchange.getRequest().mutate().header("id", String.valueOf(claims.get("id"))).build();
                     break;
                 }
@@ -130,13 +136,13 @@ public class JwtAuthenticationFilter implements GatewayFilter {
             for (String s : apiEndpointsEmployee) {
                 String control = "http://localhost:8083" + s;
                 if (control.equals(urlToCheck)) {
-                    if (isApiSecured.test(request)) {
+                   if (isApiSecured.test(request)) {
                         if (!((String) claims.get("authorities")).contains("ROLE_EMPLOYEE")) {
                             ServerHttpResponse response = exchange.getResponse();
                             response.setStatusCode(HttpStatus.UNAUTHORIZED);
                             return response.setComplete();
                         }
-                    }
+                   }
                     exchange.getRequest().mutate().header("id", String.valueOf(claims.get("id"))).build();
                     break;
                 }
