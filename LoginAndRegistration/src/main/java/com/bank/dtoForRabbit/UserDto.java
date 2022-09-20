@@ -1,4 +1,4 @@
-package com.bank.dto;
+package com.bank.dtoForRabbit;
 
 import lombok.Data;
 

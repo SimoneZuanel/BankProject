@@ -1,7 +1,7 @@
 package com.bank.loginAndRegistration.service;
 
 import com.bank.loginAndRegistration.dto.LoggerDto;
-import com.bank.dto.UserDto;
+import com.bank.dtoForRabbit.UserDto;
 import com.bank.loginAndRegistration.mapper.LoggerMapper;
 import com.bank.loginAndRegistration.mapper.UserMapper;
 import com.bank.loginAndRegistration.repository.LoggerRepository;

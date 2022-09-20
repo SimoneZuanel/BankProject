@@ -1,8 +1,9 @@
 package com.bank.loginAndRegistration.controller;
 
+import com.bank.apiBankException.SignInFailedException;
 import com.bank.loginAndRegistration.dto.LoggerDto;
 import com.bank.loginAndRegistration.dto.RegistrationDto;
-import com.bank.dto.UserDto;
+import com.bank.dtoForRabbit.UserDto;
 import com.bank.loginAndRegistration.service.AccountMessageSender;
 import com.bank.loginAndRegistration.service.SignInService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class SignInController {
 
 
     @PostMapping (value = "/registration")
-    public void saveUser(@RequestBody @Valid RegistrationDto registrationDto) {
+    public void saveUser(@RequestBody @Valid RegistrationDto registrationDto) throws SignInFailedException {
 
         UserDto userDto = signInService.addUser(registrationDto.getFirstName(), registrationDto.getLastName(),
                 registrationDto.getBirthDate(), registrationDto.getEmail());

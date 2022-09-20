@@ -92,21 +92,21 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
                     "/api/account/" + stringArrayList.get(0),
 
-                    "/api/account/{iban}/getBalance",
+                    "/api/account/" + stringArrayList.get(0) + "/getBalance",
 
                     "/api/account/openingRequestBankAccount",
 
                     "/api/account/closingRequestBankAccount",
 
-                    "/api/print/getLast10Transactions",
+                    "/api/print/" + stringArrayList.get(0) + "/getLast10Transactions",
 
                     "/api/print/getAllTransactions",
 
-                    "/api/transaction/withdrawal",
+                    "/api/transaction/" + stringArrayList.get(0) + "/withdrawal",
 
-                    "/api/transaction/deposit",
+                    "/api/transaction/" + stringArrayList.get(0) + "/deposit",
 
-                    "/api/transaction/bankTransfer"
+                    "/api/transaction/" + stringArrayList.get(0) + "/bankTransfer"
 
                    );
 

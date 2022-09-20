@@ -5,7 +5,7 @@ import com.bank.account.dto.UserBankAccountDto;
 import com.bank.account.entity.BankAccount;
 import com.bank.account.mapper.BankAccountMapper;
 import com.bank.account.repository.BankAccountRepository;
-import com.bank.dto.UserDto;
+import com.bank.dtoForRabbit.UserDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

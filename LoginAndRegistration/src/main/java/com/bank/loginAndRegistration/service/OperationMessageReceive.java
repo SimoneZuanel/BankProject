@@ -1,6 +1,6 @@
 package com.bank.loginAndRegistration.service;
 
-import com.bank.dto.UserDto;
+import com.bank.dtoForRabbit.UserDto;
 import com.bank.loginAndRegistration.entity.User;
 import com.bank.loginAndRegistration.repository.UserRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;

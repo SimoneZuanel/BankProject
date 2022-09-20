@@ -4,6 +4,8 @@ import com.bank.account.dto.*;
 
 import com.bank.account.service.BankAccountService;
 import com.bank.account.service.LoginAndRegistrationMessageSender;
+import com.bank.apiBankException.AccountClosureFailedException;
+import com.bank.apiBankException.AccountOpeningFailed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,29 +43,29 @@ public class BankAccountController {
     }
 
     @PostMapping(value = "/openingRequestBankAccount")
-    public void openingRequestBankAccount(@RequestBody NewBankAccountDto newBankAccountDto){
+    public void openingRequestBankAccount(@RequestBody NewBankAccountDto newBankAccountDto) throws AccountOpeningFailed {
         bankAccountService.openingRequestBankAccount(newBankAccountDto.getNumberAccount(), newBankAccountDto.getAmount());
     }
 
     @PutMapping(value = "/closingRequestBankAccount")
-    public void closingRequestBankAccount(@RequestBody NumberAccountDto numberAccountDto){
+    public void closingRequestBankAccount(@RequestBody NumberAccountDto numberAccountDto) throws AccountClosureFailedException {
         bankAccountService.closingRequestBankAccount(numberAccountDto.getNumberAccount());
     }
 
     @CrossOrigin("*")
     @PutMapping(value = "/openFirstBankAccount")
-    public void openFirstBankAccount(@RequestBody NumberAccountDto numberAccountDto){
+    public void openFirstBankAccount(@RequestBody NumberAccountDto numberAccountDto) throws AccountOpeningFailed {
         bankAccountService.openFirstBankAccount(numberAccountDto.getNumberAccount());
     }
 
     @PutMapping(value = "/openAnotherBankAccount")
-    public void openAnotherBankAccount(@RequestBody NewAnotherBankAccountDto newAnotherBankAccountDto){
+    public void openAnotherBankAccount(@RequestBody NewAnotherBankAccountDto newAnotherBankAccountDto) throws AccountOpeningFailed {
         bankAccountService.openAnotherBankAccount
                 (newAnotherBankAccountDto.getOldBankAccount(), newAnotherBankAccountDto.getNewBankAccount());
     }
 
     @DeleteMapping (value = "/closeBankAccount")
-    public void closeBankAccount(@RequestBody NumberAccountDto numberAccountDto){
+    public void closeBankAccount(@RequestBody NumberAccountDto numberAccountDto) throws AccountClosureFailedException {
         bankAccountService.closeBankAccount(numberAccountDto.getNumberAccount());
     }
 

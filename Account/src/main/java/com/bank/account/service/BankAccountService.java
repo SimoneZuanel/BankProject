@@ -5,6 +5,8 @@ import com.bank.account.entity.BankAccount;
 import com.bank.account.entity.BankAccountEnum;
 import com.bank.account.mapper.BankAccountMapper;
 import com.bank.account.repository.BankAccountRepository;
+import com.bank.apiBankException.AccountClosureFailedException;
+import com.bank.apiBankException.AccountOpeningFailed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -45,15 +47,13 @@ public class BankAccountService {
         return bankAccountDto.getBalance();
     }
 
-    public void openingRequestBankAccount(String numberAccount, Double amount) {
+    public void openingRequestBankAccount(String numberAccount, Double amount) throws AccountOpeningFailed {
 
         BankAccount oldBankAccount = bankAccountRepository.findByNumberAccount(numberAccount);
 
         BankAccountDto newBankAccountDto = new BankAccountDto();
-
         if (oldBankAccount == null) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "account non trovato, non è possibile aprire un nuovo conto");
+            throw new AccountOpeningFailed("account non trovato, non è possibile aprire un nuovo conto");
 
         } else {
 
@@ -72,9 +72,10 @@ public class BankAccountService {
 
             bankAccountRepository.save(bankAccountMapper.toEntity(newBankAccountDto));
         }
+
     }
 
-    public void closingRequestBankAccount(String numberAccount) {
+    public void closingRequestBankAccount(String numberAccount) throws AccountClosureFailedException {
         BankAccountDto bankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(numberAccount));
 
         if(bankAccount.getState() == BankAccountEnum.ACTIVE){
@@ -82,18 +83,18 @@ public class BankAccountService {
             bankAccountRepository.save(bankAccountMapper.toEntity(bankAccount));
 
         }else if (bankAccount.getState() == BankAccountEnum.INACTIVE){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account non è attivo");
+            throw new AccountClosureFailedException("l'account non è attivo");
 
         }else if (bankAccount.getState() == BankAccountEnum.OPENING_REQUEST){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è in fase di approvazione");
+            throw new AccountClosureFailedException("l'account è in fase di approvazione");
 
         }else{
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account non esiste");
+            throw new AccountClosureFailedException("l'account non esiste");
         }
 
     }
 
-    public void openFirstBankAccount(String numberAccount) {
+    public void openFirstBankAccount(String numberAccount) throws AccountOpeningFailed {
         BankAccountDto bankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(numberAccount));
 
         if(bankAccount.getState() == BankAccountEnum.INACTIVE) {
@@ -101,31 +102,30 @@ public class BankAccountService {
             bankAccountRepository.save(bankAccountMapper.toEntity(bankAccount));
 
         }else if (bankAccount.getState() == BankAccountEnum.ACTIVE){
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è già attivo");
+            throw new AccountOpeningFailed("l'account è già attivo");
 
         }else if (bankAccount.getState() == BankAccountEnum.OPENING_REQUEST) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è in fase di apertura");
+            throw new AccountOpeningFailed("l'account è in fase di apertura");
 
         }else{
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è in fase di chiusura");
+            throw new AccountOpeningFailed("l'account è in fase di chiusura");
         }
 
     }
 
-    public void closeBankAccount(String numberAccount) {
+    public void closeBankAccount(String numberAccount) throws AccountClosureFailedException {
 
         BankAccount bankAccount = bankAccountRepository.findByNumberAccount(numberAccount);
         BankAccountDto bankAccountDto;
 
         if (bankAccount == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR,
-                    "account non esistente, non è possibile chiudere il conto");
+            throw new AccountClosureFailedException("account non esistente, non è possibile chiudere il conto");
         else
             bankAccountDto = bankAccountMapper.toDto(bankAccount);
             bankAccountRepository.delete(bankAccountMapper.toEntity(bankAccountDto));
     }
 
-    public void openAnotherBankAccount(String oldNumberAccount, String newNumberAccount){
+    public void openAnotherBankAccount(String oldNumberAccount, String newNumberAccount) throws AccountOpeningFailed {
 
         BankAccountDto oldBankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(oldNumberAccount));
         BankAccountDto newBankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(newNumberAccount));
@@ -137,14 +137,14 @@ public class BankAccountService {
             bankAccountRepository.save(bankAccountMapper.toEntity(oldBankAccount));
 
         }else if (newBankAccount.getState() == BankAccountEnum.ACTIVE) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "l'account è già attivo");
+            throw new AccountOpeningFailed("l'account è già attivo");
 
         } else if (newBankAccount.getState() == BankAccountEnum.CLOSING_REQUEST && newBankAccount.getState() == BankAccountEnum.INACTIVE) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "il conto è inattivo o in fase di chiusura");
+            throw new AccountOpeningFailed("il conto è inattivo o in fase di chiusura");
 
         }else{
             bankAccountRepository.delete(bankAccountMapper.toEntity(newBankAccount));
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "il trasferimento di denaro non è andato a buon fine");
+            throw new AccountOpeningFailed("il trasferimento di denaro non è andato a buon fine");
         }
 
     }

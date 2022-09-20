@@ -1,6 +1,6 @@
 package com.bank.loginAndRegistration.mapper;
 
-import com.bank.dto.UserDto;
+import com.bank.dtoForRabbit.UserDto;
 import com.bank.loginAndRegistration.entity.User;
 import org.springframework.stereotype.Component;
 

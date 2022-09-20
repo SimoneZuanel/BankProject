@@ -1,8 +1,9 @@
 package com.bank.loginAndRegistration.service;
 
+import com.bank.apiBankException.SignInFailedException;
 import com.bank.loginAndRegistration.dto.AuthorityDto;
 import com.bank.loginAndRegistration.dto.LoggerDto;
-import com.bank.dto.UserDto;
+import com.bank.dtoForRabbit.UserDto;
 import com.bank.loginAndRegistration.entity.AuthorityEnum;
 import com.bank.loginAndRegistration.mapper.AuthorityMapper;
 import com.bank.loginAndRegistration.mapper.LoggerMapper;
@@ -11,12 +12,11 @@ import com.bank.loginAndRegistration.repository.AuthorityRepository;
 import com.bank.loginAndRegistration.repository.LoggerRepository;
 import com.bank.loginAndRegistration.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -33,37 +33,42 @@ public class SignInService {
     @Autowired PasswordEncoder passwordEncoder;
 
 
-    public UserDto addUser(String firstName, String lastName, Date birthDate, String email) {
+    public UserDto addUser(String firstName, String lastName, Date birthDate, String email) throws SignInFailedException {
 
         SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = sm.format(birthDate);
 
-        if(firstName == null || lastName == null || birthDate == null || email == null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tutti i campi devono essere riempiti");
+        LocalDate currentDate = LocalDate.now();
+        Integer currentYear = currentDate.getYear();
+        Integer currentMonth= currentDate.getMonthValue();
+        Integer currentDay= currentDate.getDayOfMonth();
+
 
         StringTokenizer st = new StringTokenizer(strDate, "/");
         Integer day= Integer.parseInt(st.nextToken());
         if(day==null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Formato sbagliato");
+            throw new SignInFailedException("Formato Sbagliato");
         Integer month =  Integer.parseInt(st.nextToken());
         if(month==null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Formato sbagliato");
+            throw new SignInFailedException("Formato Sbagliato");
         Integer year =  Integer.parseInt(st.nextToken());
         if(year==null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Formato sbagliato");
-        if(year>2004)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Hai meno di 18 anni");
+            throw new SignInFailedException("Formato Sbagliato");
+        if(currentYear - year < 18)
+            throw new SignInFailedException("Hai meno di 18 anni");
+        if((currentYear - year)== 18 && ((currentMonth < month) || ((currentMonth== month) && currentDay<day)))
+            throw new SignInFailedException("Hai meno di 18 anni");
         if((month==2) && (day<1 || day >29))
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");
+            throw new SignInFailedException("Giorno non corretto");
         if((month==1 || month==3 || month==5 || month == 7 || month == 8 || month == 10
                 || month==12) && (day<1 || day > 31))
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");
+            throw new SignInFailedException("Giorno non corretto");
         if((month==4 || month== 6 || month==9 || month==11) && (day<1 || day > 30))
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Giorno non corretto");
+            throw new SignInFailedException("Giorno non corretto");
 
-        // email controllo caratteri
+
         if (userRepository.findByEmail(email) != null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Email già esistente");
+            throw new SignInFailedException("Email già esistente");
 
 
         UserDto userDto = new UserDto();

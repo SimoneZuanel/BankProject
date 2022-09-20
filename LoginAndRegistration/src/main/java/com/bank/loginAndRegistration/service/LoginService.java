@@ -1,20 +1,16 @@
 package com.bank.loginAndRegistration.service;
 
+import com.bank.apiBankException.LoginFailedException;
 import com.bank.loginAndRegistration.dto.AuthorityDto;
 import com.bank.loginAndRegistration.entity.Authority;
-import com.bank.loginAndRegistration.entity.AuthorityEnum;
 import com.bank.loginAndRegistration.entity.Logger;
 import com.bank.loginAndRegistration.jwt.JwtProvider;
 import com.bank.loginAndRegistration.mapper.AuthorityMapper;
 import com.bank.loginAndRegistration.repository.AuthorityRepository;
 import com.bank.loginAndRegistration.repository.LoggerRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,13 +33,13 @@ public class LoginService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public String createToken(String username, String password) {
+    public String createToken(String username, String password) throws LoginFailedException {
 
-        if (username == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Campo username vuoto");
+        if (username == null) throw new LoginFailedException("Campo Username vuoto");
 
         Logger logger = loggerRepository.findByUsername(username);
 
-        if (logger == null) throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Utente non trovato");
+        if (logger == null) throw new LoginFailedException("Utente non trovato");
 
         List<Authority> authorityList = authorityRepository.findAllByUsername(username);
 
@@ -54,7 +50,7 @@ public class LoginService {
         }
 
         if (!this.passwordEncoder.matches(password, logger.getPassword()))
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "La password inserita non è corretta");
+            throw new LoginFailedException("Username  e/o password non corrette");
 
 
         Map claimMap = new HashMap(0);
@@ -65,11 +61,11 @@ public class LoginService {
 
     }
 
-    public ArrayList<String> getRoles(String username) {
+    public List<String> getRoles(String username) {
 
         List<Authority> authorityList = authorityRepository.findAllByUsername(username);
 
-        ArrayList<String> authorityDtoList = new ArrayList<>();
+        List<String> authorityDtoList = new ArrayList<>();
 
         for (Authority authority : authorityList) {
             AuthorityDto authorityDto = authorityMapper.toDto(authority);

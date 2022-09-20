@@ -1,7 +1,6 @@
 package com.bank.operation.controller;
 
 import com.bank.operation.dto.GetAllTransactionDto;
-import com.bank.operation.dto.IbanPayerDto;
 import com.bank.operation.dto.TransactionDto;
 import com.bank.operation.service.AccountMessageSender;
 import com.bank.operation.service.LoginAndRegistrationMessageSender;
@@ -35,12 +34,12 @@ public class PrintController {
         return loginAndRegistrationMessageSender.sendUserListMessage(new ArrayList<>());
     }
 
-    @GetMapping(value = "/getLast10Transactions")
-    public List<TransactionDto> getLast10Transactions(@RequestBody IbanPayerDto ibanPayerDto){
-        return printService.getLast10Transactions(ibanPayerDto.getIbanPayer());
+    @GetMapping(value = "/{iban}/getLast10Transactions")
+    public List<TransactionDto> getLast10Transactions(@PathVariable String iban){
+        return printService.getLast10Transactions(iban);
     }
 
-    @PostMapping(value = "/getAllTransactions")
+    @GetMapping(value = "/getAllTransactions")
     public List<TransactionDto> getAllTransactions(@RequestBody GetAllTransactionDto getAllTransactionDto){
 
         ArrayList<String> ibanList = accountMessageSender.sendIbanListMessage(getAllTransactionDto.getUsername());

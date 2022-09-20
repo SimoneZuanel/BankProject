@@ -1,6 +1,6 @@
 package com.bank.account.dto;
 
-import com.bank.dto.UserDto;
+import com.bank.dtoForRabbit.UserDto;
 import lombok.Data;
 
 import java.util.List;
