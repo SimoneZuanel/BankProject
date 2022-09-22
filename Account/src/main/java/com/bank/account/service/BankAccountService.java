@@ -48,6 +48,8 @@ public class BankAccountService {
         if (oldBankAccount == null) {
             throw new AccountOpeningFailed("account non trovato, non è possibile aprire un nuovo conto");
 
+        // aggiungere else if nel caso possiede già due account non crearne un terzo
+
         } else {
 
             newBankAccountDto.setUsername(oldBankAccount.getUsername());
@@ -118,10 +120,17 @@ public class BankAccountService {
             bankAccountRepository.delete(bankAccountMapper.toEntity(bankAccountDto));
     }
 
-    public void openAnotherBankAccount(String oldNumberAccount, String newNumberAccount) throws AccountOpeningFailed {
+    public void openAnotherBankAccount(String numberAccount) throws AccountOpeningFailed {
 
-        BankAccountDto oldBankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(oldNumberAccount));
-        BankAccountDto newBankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(newNumberAccount));
+        BankAccount newBankAccountEntity = bankAccountRepository.findByNumberAccount(numberAccount);
+
+        List<BankAccount> bankAccountList = bankAccountRepository.findByUsername(newBankAccountEntity.getUsername());
+
+        BankAccountDto newBankAccount = bankAccountMapper.toDto(bankAccountRepository.findByNumberAccount(numberAccount));
+
+        bankAccountList.remove(newBankAccountEntity);
+
+        BankAccountDto oldBankAccount = bankAccountMapper.toDto(bankAccountList.get(0));
 
         if(newBankAccount.getState() == BankAccountEnum.OPENING_REQUEST && oldBankAccount.getBalance() > newBankAccount.getBalance()) {
             newBankAccount.setState(BankAccountEnum.ACTIVE);

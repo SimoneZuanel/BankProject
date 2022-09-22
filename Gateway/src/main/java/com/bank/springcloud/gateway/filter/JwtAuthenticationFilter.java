@@ -82,7 +82,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
                     "/api/account/openAnotherBankAccount",
 
-                    "/api/account/closeBankAccount",
+                    "/api/account/closeBankAccount/" + stringArrayList.get(0),
 
                     "/api/print/getAllUsers"
 
@@ -91,8 +91,6 @@ public class JwtAuthenticationFilter implements GatewayFilter {
             final List<String> apiEndpointsClient = List.of(
 
                     "/api/account/" + stringArrayList.get(0),
-
-                    "/api/account/getBalance",
 
                     "/api/account/openingRequestBankAccount",
 

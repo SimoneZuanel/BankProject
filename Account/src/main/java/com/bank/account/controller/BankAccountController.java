@@ -47,21 +47,20 @@ public class BankAccountController {
         bankAccountService.closingRequestBankAccount(numberAccountDto.getNumberAccount());
     }
 
-    @CrossOrigin("*")
     @PutMapping(value = "/openFirstBankAccount")
     public void openFirstBankAccount(@RequestBody NumberAccountDto numberAccountDto) throws AccountOpeningFailed {
         bankAccountService.openFirstBankAccount(numberAccountDto.getNumberAccount());
     }
 
     @PutMapping(value = "/openAnotherBankAccount")
-    public void openAnotherBankAccount(@RequestBody NewAnotherBankAccountDto newAnotherBankAccountDto) throws AccountOpeningFailed {
+    public void openAnotherBankAccount(@RequestBody NumberAccountDto numberAccountDto) throws AccountOpeningFailed {
         bankAccountService.openAnotherBankAccount
-                (newAnotherBankAccountDto.getOldBankAccount(), newAnotherBankAccountDto.getNewBankAccount());
+                (numberAccountDto.getNumberAccount());
     }
 
-    @DeleteMapping (value = "/closeBankAccount")
-    public void closeBankAccount(@RequestBody NumberAccountDto numberAccountDto) throws AccountClosureFailedException {
-        bankAccountService.closeBankAccount(numberAccountDto.getNumberAccount());
+    @DeleteMapping (value = "/closeBankAccount/{numberAccount}")
+    public void closeBankAccount(@PathVariable String numberAccount) throws AccountClosureFailedException {
+        bankAccountService.closeBankAccount(numberAccount);
     }
 
 }
