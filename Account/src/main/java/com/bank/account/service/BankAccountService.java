@@ -40,13 +40,6 @@ public class BankAccountService {
         return bankAccountDtoList;
     }
 
-    public Double getBalance(String iban){
-
-        BankAccountDto bankAccountDto = bankAccountMapper.toDto(bankAccountRepository.findByIban(iban));
-
-        return bankAccountDto.getBalance();
-    }
-
     public void openingRequestBankAccount(String numberAccount, Double amount) throws AccountOpeningFailed {
 
         BankAccount oldBankAccount = bankAccountRepository.findByNumberAccount(numberAccount);

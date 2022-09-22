@@ -22,43 +22,41 @@ public class TransactionController {
     }
 
 
-    @PostMapping (value = "/{iban}/withdrawal")
-    public void withdrawal(@PathVariable String iban,
-                           @RequestBody WithdrawalDepositDto withdrawalDepositDto) {
+    @PostMapping (value = "/withdrawal")
+    public void withdrawal(@RequestBody WithdrawalDepositDto withdrawalDepositDto) {
 
         transactionService.withdrawal
-                (iban, withdrawalDepositDto.getAmount(), withdrawalDepositDto.getCausal());
+                (withdrawalDepositDto.getIban(), withdrawalDepositDto.getAmount(), withdrawalDepositDto.getCausal());
 
         TransactionDto transactionDto = new TransactionDto();
-        transactionDto.setIbanPayer(iban);
+        transactionDto.setIbanPayer(withdrawalDepositDto.getIban());
         transactionDto.setAmount(withdrawalDepositDto.getAmount());
 
         accountMessageSender.sendAccountMessageWithdrawal(transactionDto);
     }
 
-    @PostMapping (value = "/{iban}/deposit")
-    public void deposit( @PathVariable String iban,
+    @PostMapping (value = "/deposit")
+    public void deposit(
                          @RequestBody WithdrawalDepositDto withdrawalDepositDto) {
 
         transactionService.deposit
-                (iban, withdrawalDepositDto.getAmount(), withdrawalDepositDto.getCausal());
+                (withdrawalDepositDto.getIban(), withdrawalDepositDto.getAmount(), withdrawalDepositDto.getCausal());
 
         TransactionDto transactionDto = new TransactionDto();
-        transactionDto.setIbanPayer(iban);
+        transactionDto.setIbanPayer(withdrawalDepositDto.getIban());
         transactionDto.setAmount(withdrawalDepositDto.getAmount());
 
         accountMessageSender.sendAccountMessageDeposit(transactionDto);
     }
 
-    @PostMapping (value = "/{iban}/bankTransfer")
-    public void bankTransfer(@PathVariable String iban,
-                             @RequestBody BankTransferDto bankTransferDto) {
+    @PostMapping (value = "/bankTransfer")
+    public void bankTransfer(@RequestBody BankTransferDto bankTransferDto) {
 
-        transactionService.bankTransfer(iban,
+        transactionService.bankTransfer(bankTransferDto.getIban(),
                 bankTransferDto.getIbanBeneficiary(), bankTransferDto.getAmount(), bankTransferDto.getCausal());
 
         TransactionDto transactionDto = new TransactionDto();
-        transactionDto.setIbanPayer(iban);
+        transactionDto.setIbanPayer(bankTransferDto.getIban());
         transactionDto.setIbanBeneficiary(bankTransferDto.getIbanBeneficiary());
         transactionDto.setAmount(bankTransferDto.getAmount());
 

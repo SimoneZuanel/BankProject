@@ -37,11 +37,6 @@ public class BankAccountController {
         return loginAndRegistrationMessageSender.sendUserMessage(username);
     }
 
-    @GetMapping(value = "/{iban}/getBalance")
-    public Double getBalance(@PathVariable String iban){
-        return bankAccountService.getBalance(iban);
-    }
-
     @PostMapping(value = "/openingRequestBankAccount")
     public void openingRequestBankAccount(@RequestBody NewBankAccountDto newBankAccountDto) throws AccountOpeningFailed {
         bankAccountService.openingRequestBankAccount(newBankAccountDto.getNumberAccount(), newBankAccountDto.getAmount());
