@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Data
 public class TypeOfTransactionDto {
+
     private Long id;
     private TypeOfTransactionEnum typeOfTransactionEnum;
     private Transaction transactionId;

@@ -20,7 +20,7 @@ public class RegistrationDto {
     private Date birthDate;
 
     @NotBlank(message = "Tutti i campi devono essere inseriti")
-    @Email(regexp = "\\b[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[AZ]{2,4}\\b")
+    @Email(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
     private String email;
 
     @NotBlank(message = "Tutti i campi devono essere inseriti")

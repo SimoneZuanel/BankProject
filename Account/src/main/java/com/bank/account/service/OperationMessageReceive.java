@@ -3,16 +3,14 @@ package com.bank.account.service;
 import com.bank.account.dto.BankAccountDto;
 import com.bank.account.dto.MessageTransactionDto;
 import com.bank.account.entity.BankAccount;
+import com.bank.account.entity.BankAccountEnum;
 import com.bank.account.mapper.BankAccountMapper;
 import com.bank.account.repository.BankAccountRepository;
 import com.bank.apiBankException.BankTransferFailedException;
-import com.bank.apiBankException.DepositFailedException;
 import com.bank.apiBankException.WithdrawalFailedException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +25,16 @@ public class OperationMessageReceive {
 
 
     @RabbitListener(queues = "withdrawal")
-    public String receiveTransactionMessageWithdrawal(MessageTransactionDto messageTransactionDto) throws WithdrawalFailedException {
+    public String receiveTransactionMessageWithdrawal(MessageTransactionDto messageTransactionDto) {
 
         BankAccountDto bankAccountDto =
                 bankAccountMapper.toDto(bankAccountRepository.findByIban(messageTransactionDto.getIbanPayer()));
 
         if (bankAccountDto == null) {
-            throw new WithdrawalFailedException("l'account non esiste");
+            return "failed, account not found!";
+
+        } else if (bankAccountDto.getState() != BankAccountEnum.ACTIVE) {
+            return "failed, account not active!";
 
         } else if (bankAccountDto.getBalance() > messageTransactionDto.getAmount()) {
             bankAccountDto.setBalance(bankAccountDto.getBalance() - messageTransactionDto.getAmount());
@@ -47,13 +48,16 @@ public class OperationMessageReceive {
     }
 
     @RabbitListener(queues = "deposit")
-    public String receiveTransactionMessageDeposit(MessageTransactionDto messageTransactionDto) throws DepositFailedException {
+    public String receiveTransactionMessageDeposit(MessageTransactionDto messageTransactionDto) {
 
         BankAccountDto bankAccountDto =
                 bankAccountMapper.toDto(bankAccountRepository.findByIban(messageTransactionDto.getIbanPayer()));
 
         if (bankAccountDto == null) {
-            throw new DepositFailedException("l'account non esiste");
+            return "failed, account not found!";
+
+        } else if (bankAccountDto.getState() != BankAccountEnum.ACTIVE) {
+            return "failed, account not active!";
 
         } else if (messageTransactionDto.getAmount() > 0) {
             bankAccountDto.setBalance(bankAccountDto.getBalance() + messageTransactionDto.getAmount());
@@ -67,7 +71,7 @@ public class OperationMessageReceive {
     }
 
     @RabbitListener(queues = "bankTransfer")
-    public String receiveTransactionMessageBankTransfer (MessageTransactionDto messageTransactionDto) throws BankTransferFailedException {
+    public String receiveTransactionMessageBankTransfer (MessageTransactionDto messageTransactionDto) {
 
         BankAccountDto bankPayerDto =
                 bankAccountMapper.toDto(bankAccountRepository.findByIban(messageTransactionDto.getIbanPayer()));
@@ -77,7 +81,10 @@ public class OperationMessageReceive {
 
 
         if (bankPayerDto == null || bankBeneficiaryDto == null) {
-            throw new BankTransferFailedException("un account non è stato trovato");
+            return "failed, account not found!";
+
+        } else if (bankPayerDto.getState() != BankAccountEnum.ACTIVE) {
+            return "failed, account not active!";
 
         } else if (bankPayerDto.getBalance() > messageTransactionDto.getAmount() && messageTransactionDto.getAmount() > 0) {
             bankPayerDto.setBalance(bankPayerDto.getBalance() - messageTransactionDto.getAmount());

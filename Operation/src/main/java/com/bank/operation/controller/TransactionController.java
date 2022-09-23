@@ -36,8 +36,7 @@ public class TransactionController {
     }
 
     @PostMapping (value = "/deposit")
-    public void deposit(
-                         @RequestBody WithdrawalDepositDto withdrawalDepositDto) {
+    public void deposit(@RequestBody WithdrawalDepositDto withdrawalDepositDto) {
 
         transactionService.deposit
                 (withdrawalDepositDto.getIban(), withdrawalDepositDto.getAmount(), withdrawalDepositDto.getCausal());

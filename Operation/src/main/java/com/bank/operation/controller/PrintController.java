@@ -2,6 +2,7 @@ package com.bank.operation.controller;
 
 import com.bank.operation.dto.GetAllTransactionDto;
 import com.bank.operation.dto.TransactionDto;
+import com.bank.operation.dto.TypeOfTransactionDto;
 import com.bank.operation.service.AccountMessageSender;
 import com.bank.operation.service.LoginAndRegistrationMessageSender;
 import com.bank.operation.service.PrintService;
@@ -35,7 +36,7 @@ public class PrintController {
     }
 
     @GetMapping(value = "/getLast10Transactions")
-    public List<TransactionDto> getLast10Transactions(@RequestParam String iban){
+    public List<TypeOfTransactionDto> getLast10Transactions(@RequestParam String iban){
         return printService.getLast10Transactions(iban);
     }
 

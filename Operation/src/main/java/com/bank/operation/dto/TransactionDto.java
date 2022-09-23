@@ -12,4 +12,5 @@ public class TransactionDto {
     private String date;
     private String causal;
     private String state;
+
 }
