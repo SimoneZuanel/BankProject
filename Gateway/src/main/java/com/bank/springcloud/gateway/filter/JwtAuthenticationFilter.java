@@ -96,7 +96,7 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
                     "/api/account/closingRequestBankAccount",
 
-                    "/api/print/getLast10Transactions",
+                    "/api/print/getLast10Transactions/" + stringArrayList.get(0),
 
                     "/api/print/getAllTransactions",
 

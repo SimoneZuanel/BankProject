@@ -36,9 +36,9 @@ public class PrintController {
         return loginAndRegistrationMessageSender.sendUserListMessage(new ArrayList<>());
     }
 
-    @GetMapping(value = "/getLast10Transactions")
-    public List<TypeOfTransactionDto> getLast10Transactions(@RequestBody IbanDto ibanDto){
-        return printService.getLast10Transactions(ibanDto.getIban());
+    @GetMapping(value = "/getLast10Transactions/{iban}")
+    public List<TypeOfTransactionDto> getLast10Transactions(@PathVariable String iban){
+        return printService.getLast10Transactions(iban);
     }
 
     @GetMapping(value = "/getAllTransactions")
