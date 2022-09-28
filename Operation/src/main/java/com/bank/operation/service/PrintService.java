@@ -39,10 +39,6 @@ public class PrintService {
             TypeOfTransactionDto typeOfTransactionDto =
                     typeOfTransactionMapper.toDto(typeOfTransactionRepository.findByTransactionId(transaction));
 
-            /*typeOfTransactionDto.setTransactionId(transactionMapper.toDto(transaction));
-
-            typeOfTransactionDto.setTypeOfTransactionEnum(typeOfTransactionRepository.findByTransactionId(transaction).getTypeOfTransactionEnum());*/
-
             transactionDtoList.add(typeOfTransactionDto);
 
         }
@@ -50,7 +46,7 @@ public class PrintService {
         return transactionDtoList;
     }
 
-    public List<TransactionDto> getAllTransactions(ArrayList<String> ibanList, String startDate, String endDate){
+    public List<TransactionDto> getAllTransactions(ArrayList<String> ibanList, LocalDate startDate, LocalDate endDate){
 
         List<TransactionDto> transactionDtoList = new ArrayList<>();
 

@@ -6,8 +6,6 @@ import com.bank.account.entity.BankAccount;
 import com.bank.account.entity.BankAccountEnum;
 import com.bank.account.mapper.BankAccountMapper;
 import com.bank.account.repository.BankAccountRepository;
-import com.bank.apiBankException.BankTransferFailedException;
-import com.bank.apiBankException.WithdrawalFailedException;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,10 +28,7 @@ public class OperationMessageReceive {
         BankAccountDto bankAccountDto =
                 bankAccountMapper.toDto(bankAccountRepository.findByIban(messageTransactionDto.getIbanPayer()));
 
-        if (bankAccountDto == null) {
-            return "failed, account not found!";
-
-        } else if (bankAccountDto.getState() != BankAccountEnum.ACTIVE) {
+       if (bankAccountDto.getState() != BankAccountEnum.ACTIVE) {
             return "failed, account not active!";
 
         } else if (bankAccountDto.getBalance() > messageTransactionDto.getAmount()) {
@@ -53,10 +48,7 @@ public class OperationMessageReceive {
         BankAccountDto bankAccountDto =
                 bankAccountMapper.toDto(bankAccountRepository.findByIban(messageTransactionDto.getIbanPayer()));
 
-        if (bankAccountDto == null) {
-            return "failed, account not found!";
-
-        } else if (bankAccountDto.getState() != BankAccountEnum.ACTIVE) {
+        if (bankAccountDto.getState() != BankAccountEnum.ACTIVE) {
             return "failed, account not active!";
 
         } else if (messageTransactionDto.getAmount() > 0) {
@@ -80,10 +72,7 @@ public class OperationMessageReceive {
                 bankAccountMapper.toDto(bankAccountRepository.findByIban(messageTransactionDto.getIbanBeneficiary()));
 
 
-        if (bankPayerDto == null || bankBeneficiaryDto == null) {
-            return "failed, account not found!";
-
-        } else if (bankPayerDto.getState() != BankAccountEnum.ACTIVE) {
+        if (bankPayerDto.getState() != BankAccountEnum.ACTIVE) {
             return "failed, account not active!";
 
         } else if (bankPayerDto.getBalance() > messageTransactionDto.getAmount() && messageTransactionDto.getAmount() > 0) {

@@ -7,13 +7,16 @@ import com.bank.account.service.LoginAndRegistrationMessageSender;
 import com.bank.apiBankException.AccountClosureFailedException;
 import com.bank.apiBankException.AccountOpeningFailed;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/api/account")
+@Validated
 public class BankAccountController {
 
     private BankAccountService bankAccountService;
@@ -38,22 +41,22 @@ public class BankAccountController {
     }
 
     @PostMapping(value = "/openingRequestBankAccount")
-    public void openingRequestBankAccount(@RequestBody NewBankAccountDto newBankAccountDto) throws AccountOpeningFailed {
+    public void openingRequestBankAccount(@RequestBody @Valid NewBankAccountDto newBankAccountDto) throws AccountOpeningFailed {
         bankAccountService.openingRequestBankAccount(newBankAccountDto.getNumberAccount(), newBankAccountDto.getAmount());
     }
 
     @PutMapping(value = "/closingRequestBankAccount")
-    public void closingRequestBankAccount(@RequestBody NumberAccountDto numberAccountDto) throws AccountClosureFailedException {
+    public void closingRequestBankAccount(@RequestBody @Valid NumberAccountDto numberAccountDto) throws AccountClosureFailedException {
         bankAccountService.closingRequestBankAccount(numberAccountDto.getNumberAccount());
     }
 
     @PutMapping(value = "/openFirstBankAccount")
-    public void openFirstBankAccount(@RequestBody NumberAccountDto numberAccountDto) throws AccountOpeningFailed {
+    public void openFirstBankAccount(@RequestBody @Valid NumberAccountDto numberAccountDto) throws AccountOpeningFailed {
         bankAccountService.openFirstBankAccount(numberAccountDto.getNumberAccount());
     }
 
     @PutMapping(value = "/openAnotherBankAccount")
-    public void openAnotherBankAccount(@RequestBody NumberAccountDto numberAccountDto) throws AccountOpeningFailed {
+    public void openAnotherBankAccount(@RequestBody @Valid NumberAccountDto numberAccountDto) throws AccountOpeningFailed {
         bankAccountService.openAnotherBankAccount
                 (numberAccountDto.getNumberAccount());
     }

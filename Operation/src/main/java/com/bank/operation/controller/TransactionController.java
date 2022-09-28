@@ -6,10 +6,14 @@ import com.bank.operation.dto.WithdrawalDepositDto;
 import com.bank.operation.service.AccountMessageSender;
 import com.bank.operation.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/transaction")
+@Validated
 public class TransactionController {
 
     private TransactionService transactionService;
@@ -23,7 +27,7 @@ public class TransactionController {
 
 
     @PostMapping (value = "/withdrawal")
-    public void withdrawal(@RequestBody WithdrawalDepositDto withdrawalDepositDto) {
+    public void withdrawal(@RequestBody @Valid WithdrawalDepositDto withdrawalDepositDto) {
 
         transactionService.withdrawal
                 (withdrawalDepositDto.getIban(), withdrawalDepositDto.getAmount(), withdrawalDepositDto.getCausal());
@@ -36,7 +40,7 @@ public class TransactionController {
     }
 
     @PostMapping (value = "/deposit")
-    public void deposit(@RequestBody WithdrawalDepositDto withdrawalDepositDto) {
+    public void deposit(@RequestBody @Valid WithdrawalDepositDto withdrawalDepositDto) {
 
         transactionService.deposit
                 (withdrawalDepositDto.getIban(), withdrawalDepositDto.getAmount(), withdrawalDepositDto.getCausal());
@@ -49,7 +53,7 @@ public class TransactionController {
     }
 
     @PostMapping (value = "/bankTransfer")
-    public void bankTransfer(@RequestBody BankTransferDto bankTransferDto) {
+    public void bankTransfer(@RequestBody @Valid BankTransferDto bankTransferDto) {
 
         transactionService.bankTransfer(bankTransferDto.getIban(),
                 bankTransferDto.getIbanBeneficiary(), bankTransferDto.getAmount(), bankTransferDto.getCausal());

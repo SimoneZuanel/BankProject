@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -71,6 +72,11 @@ public class JwtAuthenticationFilter implements GatewayFilter {
             }
 
             stringArrayList = new ArrayList<>(List.of(numberToPass.split(",")));
+            if (stringArrayList.size() < 3) {
+                stringArrayList.add("1");
+                stringArrayList.add("1");
+                stringArrayList.add("1");
+            }
 
             Claims claims = jwtUtil.getClaims(token);
 
@@ -98,7 +104,8 @@ public class JwtAuthenticationFilter implements GatewayFilter {
 
                     "/api/print/getLast10Transactions/" + stringArrayList.get(0),
 
-                    "/api/print/getAllTransactions",
+                    "/api/print/getAllTransactions/" + stringArrayList.get(0) + "/" + stringArrayList.get(1) +
+                    "/" + stringArrayList.get(2),
 
                     "/api/transaction/withdrawal",
 

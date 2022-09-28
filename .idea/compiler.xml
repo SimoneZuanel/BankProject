@@ -21,6 +21,7 @@
       <module name="Gateway" options="-parameters" />
       <module name="LoginAndRegistration" options="-parameters" />
       <module name="Operation" options="-parameters" />
+      <module name="bank-project-pom" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />
     </option>
   </component>

@@ -48,8 +48,6 @@ public class BankAccountService {
         if (oldBankAccount == null) {
             throw new AccountOpeningFailed("account non trovato, non è possibile aprire un nuovo conto");
 
-        // aggiungere else if nel caso possiede già due account non crearne un terzo
-
         } else {
 
             newBankAccountDto.setUsername(oldBankAccount.getUsername());
