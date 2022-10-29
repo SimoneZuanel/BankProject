@@ -2,15 +2,13 @@ package com.bank.account.service;
 
 import com.bank.account.dto.BankAccountDto;
 import com.bank.account.entity.BankAccount;
-import com.bank.account.entity.BankAccountEnum;
+import com.bank.account.enumeration.BankAccountEnum;
 import com.bank.account.mapper.BankAccountMapper;
 import com.bank.account.repository.BankAccountRepository;
 import com.bank.apiBankException.AccountClosureFailedException;
 import com.bank.apiBankException.AccountOpeningFailed;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,30 +40,38 @@ public class BankAccountService {
 
     public void openingRequestBankAccount(String numberAccount, Double amount) throws AccountOpeningFailed {
 
-        BankAccount oldBankAccount = bankAccountRepository.findByNumberAccount(numberAccount);
+        String usernameAccount = bankAccountRepository.findUsername(numberAccount);
 
-        BankAccountDto newBankAccountDto = new BankAccountDto();
-        if (oldBankAccount == null) {
-            throw new AccountOpeningFailed("account non trovato, non è possibile aprire un nuovo conto");
+        List<BankAccount> bankAccountList = bankAccountRepository.findByUsername(usernameAccount);
 
-        } else {
+        if (bankAccountList.size() >= 2)
+            throw new AccountOpeningFailed("hai superato il limite massimo di conti, non è possibile aprire un nuovo conto");
 
-            newBankAccountDto.setUsername(oldBankAccount.getUsername());
-            newBankAccountDto.setBalance(amount);
-            List<String> numberAccountsList = bankAccountRepository.findNumberAccounts();
+        else{
+            BankAccount oldBankAccount = bankAccountRepository.findByNumberAccount(numberAccount);
 
-            do {
-                utilAccountService.generateIban();
+            BankAccountDto newBankAccountDto = new BankAccountDto();
+            if (oldBankAccount == null) {
+                throw new AccountOpeningFailed("account non trovato, non è possibile aprire un nuovo conto");
+
+            } else {
+
+                newBankAccountDto.setUsername(oldBankAccount.getUsername());
+                newBankAccountDto.setBalance(amount);
+                List<String> numberAccountsList = bankAccountRepository.findNumberAccounts();
+
+                do {
+                    utilAccountService.generateIban();
+                }
+                while (numberAccountsList.contains(utilAccountService.getAccountNumber()));
+
+                newBankAccountDto.setIban(utilAccountService.getIban());
+                newBankAccountDto.setNumberAccount(utilAccountService.getAccountNumber());
+                newBankAccountDto.setState(BankAccountEnum.OPENING_REQUEST);
+
+                bankAccountRepository.save(bankAccountMapper.toEntity(newBankAccountDto));
             }
-            while (numberAccountsList.contains(utilAccountService.getAccountNumber()));
-
-            newBankAccountDto.setIban(utilAccountService.getIban());
-            newBankAccountDto.setNumberAccount(utilAccountService.getAccountNumber());
-            newBankAccountDto.setState(BankAccountEnum.OPENING_REQUEST);
-
-            bankAccountRepository.save(bankAccountMapper.toEntity(newBankAccountDto));
         }
-
     }
 
     public void closingRequestBankAccount(String numberAccount) throws AccountClosureFailedException {

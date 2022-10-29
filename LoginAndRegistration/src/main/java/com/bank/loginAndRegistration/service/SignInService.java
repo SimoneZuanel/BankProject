@@ -1,15 +1,9 @@
 package com.bank.loginAndRegistration.service;
 
 import com.bank.apiBankException.SignInFailedException;
-import com.bank.loginAndRegistration.dto.AuthorityDto;
-import com.bank.loginAndRegistration.dto.LoggerDto;
-import com.bank.dtoForRabbit.UserDto;
-import com.bank.loginAndRegistration.entity.AuthorityEnum;
-import com.bank.loginAndRegistration.mapper.AuthorityMapper;
-import com.bank.loginAndRegistration.mapper.LoggerMapper;
+import com.bank.loginAndRegistration.dto.UserDto;
+import com.bank.loginAndRegistration.enumeration.AuthorityEnum;
 import com.bank.loginAndRegistration.mapper.UserMapper;
-import com.bank.loginAndRegistration.repository.AuthorityRepository;
-import com.bank.loginAndRegistration.repository.LoggerRepository;
 import com.bank.loginAndRegistration.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,14 +20,10 @@ public class SignInService {
 
     @Autowired UserRepository userRepository;
     @Autowired UserMapper userMapper;
-    @Autowired LoggerRepository loggerRepository;
-    @Autowired LoggerMapper loggerMapper;
-    @Autowired AuthorityMapper authorityMapper;
-    @Autowired AuthorityRepository authorityRepository;
     @Autowired PasswordEncoder passwordEncoder;
 
 
-    public UserDto addUser(String firstName, String lastName, Date birthDate, String email) throws SignInFailedException {
+    public UserDto addUser(String firstName, String lastName, Date birthDate, String email, String password) throws SignInFailedException {
 
         SimpleDateFormat sm = new SimpleDateFormat("dd/MM/yyyy");
         String strDate = sm.format(birthDate);
@@ -76,34 +66,24 @@ public class SignInService {
         userDto.setLastName(lastName);
         userDto.setBirthDate(strDate);
         userDto.setEmail(email);
+        userDto.setUsername(generateUsername());
+        userDto.setPassword(passwordEncoder.encode(password));
+        userDto.setAuthority(AuthorityEnum.ROLE_CLIENT);
+
+        userRepository.save(userMapper.toEntity(userDto));
+
         return userDto;
     }
 
-    public LoggerDto addLogger(String password, UserDto userDto) {
-        LoggerDto loggerDto = new LoggerDto();
-        loggerDto.setUsername(generateUsername());
-        loggerDto.setPassword(passwordEncoder.encode(password));
-        loggerDto.setUserId(userMapper.toEntity(userDto));
-        return loggerDto;
-    }
-
-    public void addAuthority(LoggerDto loggerDto) {
-        AuthorityDto authorityDto = new AuthorityDto();
-        authorityDto.setAuthority(AuthorityEnum.ROLE_CLIENT);
-        authorityDto.setUsername(loggerDto.getUsername());
-        authorityDto.setLoggerId(loggerMapper.toEntity(loggerDto));
-        authorityRepository.save(authorityMapper.toEntity(authorityDto));
-    }
-
     public String generateUsername() {
-        List<Integer> usernameList = loggerRepository.findUsernames();
-        Integer userInt = randomUsernameGenerate();
+        List<String> usernameList = userRepository.findUsernames();
+        Integer usernameNumber = randomUsernameGenerate();
 
-        while (usernameList.contains(userInt)) {
-            userInt = randomUsernameGenerate();
+        while (usernameList.contains(usernameNumber)) {
+            usernameNumber = randomUsernameGenerate();
         }
 
-        return String.format("%0" + usernameLength + "d", userInt);
+        return String.format("%0" + usernameLength + "d", usernameNumber);
     }
 
     public Integer randomUsernameGenerate() {

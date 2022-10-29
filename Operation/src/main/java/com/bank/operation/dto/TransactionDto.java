@@ -1,5 +1,6 @@
 package com.bank.operation.dto;
 
+import com.bank.operation.enumeration.TypeOfTransactionEnum;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -27,5 +28,8 @@ public class TransactionDto {
 
     @NotBlank(message = "Ogni campo deve essere inserito")
     private String state;
+
+    @NotBlank(message = "Ogni campo deve essere inserito")
+    private TypeOfTransactionEnum typeOfTransactionEnum;
 
 }

@@ -1,4 +1,4 @@
-package com.bank.loginAndRegistration.service;
+package com.bank.loginAndRegistration.serviceRabbit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

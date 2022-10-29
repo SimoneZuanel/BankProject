@@ -1,6 +1,7 @@
-package com.bank.operation.service;
+package com.bank.operation.serviceRabbit;
 
 import com.bank.operation.dto.TransactionDto;
+import com.bank.operation.entity.Transaction;
 import com.bank.operation.mapper.TransactionMapper;
 import com.bank.operation.repository.TransactionRepository;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AccountMessageSender {
@@ -22,13 +24,11 @@ public class AccountMessageSender {
 
     private final RabbitTemplate rabbitTemplate;
 
-
     private static final Logger logger = LoggerFactory.getLogger(AccountMessageSender.class);
 
     public AccountMessageSender(final RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
-
 
     public Boolean sendAccountMessageWithdrawal(TransactionDto transactionDto) {
 
@@ -66,11 +66,18 @@ public class AccountMessageSender {
 
         String response = (String) rabbitTemplate.convertSendAndReceive("bankTransfer", transactionDto);
 
-        TransactionDto newTransactionDto = transactionMapper.toDto(transactionRepository.findByState("loading"));
+        List<Transaction> newTransactions = transactionRepository.findAllByState("loading");
 
-        newTransactionDto.setState(response);
+        List<TransactionDto> newTransactionsDto = new ArrayList<>();
 
-        transactionRepository.save(transactionMapper.toEntity(newTransactionDto));
+        for (Transaction newTransaction : newTransactions ){
+            newTransactionsDto.add(transactionMapper.toDto(newTransaction));
+        }
+
+        for (TransactionDto newTransactionDto : newTransactionsDto ){
+            newTransactionDto.setState(response);
+            transactionRepository.save(transactionMapper.toEntity(newTransactionDto));
+        }
 
         return true;
     }

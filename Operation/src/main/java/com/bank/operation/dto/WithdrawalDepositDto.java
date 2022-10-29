@@ -10,7 +10,6 @@ public class WithdrawalDepositDto {
     @NotBlank(message = "Il campo non deve essere vuoto")
     private String iban;
 
-    @NotBlank(message = "Il campo non deve essere vuoto")
     private Double amount;
 
     @NotBlank(message = "Il campo non deve essere vuoto")

@@ -17,4 +17,6 @@ public interface BankAccountRepository extends JpaRepository<BankAccount, Intege
 
     List<BankAccount> findByUsername(String username);
 
+    @Query(value = "SELECT bankAccount.username FROM BankAccount bankAccount WHERE bankAccount.numberAccount = ?1")
+    String findUsername(String numberAccount);
 }

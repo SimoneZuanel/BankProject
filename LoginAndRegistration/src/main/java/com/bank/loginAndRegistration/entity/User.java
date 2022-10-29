@@ -1,5 +1,6 @@
 package com.bank.loginAndRegistration.entity;
 
+import com.bank.loginAndRegistration.enumeration.AuthorityEnum;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,5 +26,14 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "authority")
+    private AuthorityEnum authority;
 
 }

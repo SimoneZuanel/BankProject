@@ -1,5 +1,6 @@
 package com.bank.operation.entity;
 
+import com.bank.operation.enumeration.TypeOfTransactionEnum;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -31,5 +32,8 @@ public class Transaction {
 
     @Column(name = "state")
     private String state;
+
+    @Column(name = "type_of_transactions")
+    private TypeOfTransactionEnum typeOfTransactionEnum;
 
 }

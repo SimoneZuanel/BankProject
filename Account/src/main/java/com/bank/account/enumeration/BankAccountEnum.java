@@ -1,4 +1,4 @@
-package com.bank.account.entity;
+package com.bank.account.enumeration;
 
 public enum BankAccountEnum {
     INACTIVE,

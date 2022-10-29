@@ -1,11 +1,9 @@
 package com.bank.operation.service;
 
 import com.bank.operation.dto.TransactionDto;
-import com.bank.operation.dto.TypeOfTransactionDto;
-import com.bank.operation.entity.TypeOfTransactionEnum;
+import com.bank.operation.enumeration.TypeOfTransactionEnum;
 import com.bank.operation.mapper.TransactionMapper;
-import com.bank.operation.mapper.TypeOfTransactionMapper;
-import com.bank.operation.repository.TypeOfTransactionRepository;
+import com.bank.operation.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,37 +14,25 @@ import java.time.format.DateTimeFormatter;
 public class TransactionService {
 
     @Autowired
-    private TypeOfTransactionRepository typeOfTransactionRepository;
-
-    @Autowired
     private TransactionMapper transactionMapper;
 
     @Autowired
-    private TypeOfTransactionMapper typeOfTransactionMapper;
-
-    @Autowired
-    private AccountMessageSender accountMessageSender;
-
-
+    private TransactionRepository transactionRepository;
 
     public void withdrawal(String ibanPayer, Double amount, String causal){
 
         TransactionDto withdrawalDto = new TransactionDto();
         withdrawalDto.setIbanPayer(ibanPayer);
         withdrawalDto.setIbanBeneficiary("not required");
-        withdrawalDto.setAmount(amount);
+        withdrawalDto.setAmount(-amount);
         withdrawalDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         withdrawalDto.setCausal(causal);
         withdrawalDto.setState("loading");
+        withdrawalDto.setTypeOfTransactionEnum(TypeOfTransactionEnum.WITHDRAWAL);
 
-        TypeOfTransactionDto typeOfTransactionDto = new TypeOfTransactionDto();
-        typeOfTransactionDto.setTypeOfTransactionEnum(TypeOfTransactionEnum.WITHDRAWAL);
-        typeOfTransactionDto.setTransactionId(transactionMapper.toEntity(withdrawalDto));
-
-        typeOfTransactionRepository.save(typeOfTransactionMapper.toEntity(typeOfTransactionDto));
+        transactionRepository.save(transactionMapper.toEntity(withdrawalDto));
 
     }
-
 
     public void deposit(String ibanPayer, Double amount, String causal){
 
@@ -57,30 +43,35 @@ public class TransactionService {
         depositDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         depositDto.setCausal(causal);
         depositDto.setState("loading");
+        depositDto.setTypeOfTransactionEnum(TypeOfTransactionEnum.DEPOSIT);
 
-        TypeOfTransactionDto typeOfTransactionDto = new TypeOfTransactionDto();
-        typeOfTransactionDto.setTypeOfTransactionEnum(TypeOfTransactionEnum.DEPOSIT);
-        typeOfTransactionDto.setTransactionId(transactionMapper.toEntity(depositDto));
-
-        typeOfTransactionRepository.save(typeOfTransactionMapper.toEntity(typeOfTransactionDto));
+        transactionRepository.save(transactionMapper.toEntity(depositDto));
 
     }
 
     public void bankTransfer(String ibanPayer, String ibanBeneficiary, Double amount, String causal) {
 
-        TransactionDto bankTransferDto = new TransactionDto();
-        bankTransferDto.setIbanPayer(ibanPayer);
-        bankTransferDto.setIbanBeneficiary(ibanBeneficiary);
-        bankTransferDto.setAmount(amount);
-        bankTransferDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        bankTransferDto.setCausal(causal);
-        bankTransferDto.setState("loading");
+        TransactionDto bankTransferPayerDto = new TransactionDto();
+        bankTransferPayerDto.setIbanPayer(ibanPayer);
+        bankTransferPayerDto.setIbanBeneficiary(ibanBeneficiary);
+        bankTransferPayerDto.setAmount(-amount);
+        bankTransferPayerDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        bankTransferPayerDto.setCausal(causal);
+        bankTransferPayerDto.setState("loading");
+        bankTransferPayerDto.setTypeOfTransactionEnum(TypeOfTransactionEnum.BANK_TRANSFER);
 
-        TypeOfTransactionDto typeOfTransactionDto = new TypeOfTransactionDto();
-        typeOfTransactionDto.setTypeOfTransactionEnum(TypeOfTransactionEnum.BANK_TRANSFER);
-        typeOfTransactionDto.setTransactionId(transactionMapper.toEntity(bankTransferDto));
 
-        typeOfTransactionRepository.save(typeOfTransactionMapper.toEntity(typeOfTransactionDto));
+        TransactionDto bankTransferBeneficiaryDto = new TransactionDto();
+        bankTransferBeneficiaryDto.setIbanPayer(ibanBeneficiary);
+        bankTransferBeneficiaryDto.setIbanBeneficiary(ibanPayer);
+        bankTransferBeneficiaryDto.setAmount(amount);
+        bankTransferBeneficiaryDto.setDate(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        bankTransferBeneficiaryDto.setCausal(causal);
+        bankTransferBeneficiaryDto.setState("loading");
+        bankTransferBeneficiaryDto.setTypeOfTransactionEnum(TypeOfTransactionEnum.BANK_TRANSFER);
+
+        transactionRepository.save(transactionMapper.toEntity(bankTransferPayerDto));
+        transactionRepository.save(transactionMapper.toEntity(bankTransferBeneficiaryDto));
 
     }
 

@@ -3,7 +3,7 @@ package com.bank.operation.controller;
 import com.bank.operation.dto.BankTransferDto;
 import com.bank.operation.dto.TransactionDto;
 import com.bank.operation.dto.WithdrawalDepositDto;
-import com.bank.operation.service.AccountMessageSender;
+import com.bank.operation.serviceRabbit.AccountMessageSender;
 import com.bank.operation.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;

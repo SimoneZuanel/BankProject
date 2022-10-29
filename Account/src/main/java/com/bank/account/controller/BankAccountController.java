@@ -3,7 +3,7 @@ package com.bank.account.controller;
 import com.bank.account.dto.*;
 
 import com.bank.account.service.BankAccountService;
-import com.bank.account.service.LoginAndRegistrationMessageSender;
+import com.bank.account.serviceRabbit.LoginAndRegistrationMessageSender;
 import com.bank.apiBankException.AccountClosureFailedException;
 import com.bank.apiBankException.AccountOpeningFailed;
 import org.springframework.beans.factory.annotation.Autowired;

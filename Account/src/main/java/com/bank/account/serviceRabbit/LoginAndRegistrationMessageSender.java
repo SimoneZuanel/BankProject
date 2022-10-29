@@ -1,11 +1,11 @@
-package com.bank.account.service;
+package com.bank.account.serviceRabbit;
 
 import com.bank.account.dto.BankAccountDto;
 import com.bank.account.dto.UserBankAccountDto;
 import com.bank.account.entity.BankAccount;
 import com.bank.account.mapper.BankAccountMapper;
 import com.bank.account.repository.BankAccountRepository;
-import com.bank.dtoForRabbit.UserDto;
+import com.bank.dtoForRabbit.UserRabbitDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -35,7 +35,7 @@ public class LoginAndRegistrationMessageSender {
 
         logger.info("Messaggio inviato");
 
-        UserDto userDto = (UserDto) rabbitTemplate.convertSendAndReceive("sendUser", username);
+        UserRabbitDto userDto = (UserRabbitDto) rabbitTemplate.convertSendAndReceive("sendUser", username);
 
         List<BankAccount> bankAccountList = bankAccountRepository.findByUsername(username);
 

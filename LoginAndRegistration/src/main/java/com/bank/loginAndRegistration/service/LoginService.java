@@ -1,34 +1,26 @@
 package com.bank.loginAndRegistration.service;
 
 import com.bank.apiBankException.LoginFailedException;
-import com.bank.loginAndRegistration.dto.AuthorityDto;
-import com.bank.loginAndRegistration.entity.Authority;
-import com.bank.loginAndRegistration.entity.Logger;
+import com.bank.loginAndRegistration.dto.UserDto;
+import com.bank.loginAndRegistration.entity.User;
 import com.bank.loginAndRegistration.jwt.JwtProvider;
-import com.bank.loginAndRegistration.mapper.AuthorityMapper;
-import com.bank.loginAndRegistration.repository.AuthorityRepository;
-import com.bank.loginAndRegistration.repository.LoggerRepository;
+import com.bank.loginAndRegistration.mapper.UserMapper;
+import com.bank.loginAndRegistration.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class LoginService {
 
     @Autowired
-    private LoggerRepository loggerRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    private AuthorityRepository authorityRepository;
-
-    @Autowired
-    private AuthorityMapper authorityMapper;
+    private UserMapper userMapper;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -37,42 +29,31 @@ public class LoginService {
 
         if (username == null) throw new LoginFailedException("Campo Username vuoto");
 
-        Logger logger = loggerRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
 
-        if (logger == null) throw new LoginFailedException("Utente non trovato");
+        if (user == null) throw new LoginFailedException("Utente non trovato");
 
-        List<Authority> authorityList = authorityRepository.findAllByUsername(username);
+        String role = user.getAuthority().toString();
 
-        ArrayList<String> roles = new ArrayList<>();
-
-        for (Authority authority : authorityList) {
-            roles.add(authority.getAuthority().toString());
-        }
-
-        if (!this.passwordEncoder.matches(password, logger.getPassword()))
+        if (!this.passwordEncoder.matches(password, user.getPassword()))
             throw new LoginFailedException("Username  e/o password non corrette");
 
 
         Map claimMap = new HashMap(0);
-        claimMap.put("id", logger.getId());
-        claimMap.put("authorities", roles.stream().collect(Collectors.joining(",")));
+        claimMap.put("id", user.getId());
+        claimMap.put("authorities", role);
 
         return JwtProvider.createJwt(username, claimMap);
 
     }
 
-    public List<String> getRoles(String username) {
+    public String getRole(String username) {
 
-        List<Authority> authorityList = authorityRepository.findAllByUsername(username);
+        User user = userRepository.findByUsername(username);
 
-        List<String> authorityDtoList = new ArrayList<>();
+        UserDto userDto = userMapper.toDto(user);
 
-        for (Authority authority : authorityList) {
-            AuthorityDto authorityDto = authorityMapper.toDto(authority);
-            authorityDtoList.add(authorityDto.getAuthority().toString());
-        }
-
-        return authorityDtoList;
+        return userDto.getAuthority().toString();
     }
 
 

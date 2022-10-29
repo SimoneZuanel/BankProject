@@ -1,4 +1,4 @@
-package com.bank.operation.entity;
+package com.bank.operation.enumeration;
 
 public enum TypeOfTransactionEnum {
     WITHDRAWAL,

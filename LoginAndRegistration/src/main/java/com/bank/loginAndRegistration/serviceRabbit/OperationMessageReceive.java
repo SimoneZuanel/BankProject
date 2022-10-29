@@ -1,6 +1,7 @@
-package com.bank.loginAndRegistration.service;
+package com.bank.loginAndRegistration.serviceRabbit;
 
-import com.bank.dtoForRabbit.UserDto;
+import com.bank.dtoForRabbit.UserRabbitDto;
+import com.bank.loginAndRegistration.dto.UserDto;
 import com.bank.loginAndRegistration.entity.User;
 import com.bank.loginAndRegistration.repository.UserRepository;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -23,7 +24,8 @@ public class OperationMessageReceive {
         List<User> userList = userRepository.findAllByOrderByFirstNameAscLastNameAsc();
 
         for(User user : userList) {
-            UserDto userDto = new UserDto();
+            UserRabbitDto userDto = new UserRabbitDto();
+            userDto.setId(user.getId());
             userDto.setFirstName(user.getFirstName());
             userDto.setLastName(user.getLastName());
             userDto.setBirthDate(user.getBirthDate());

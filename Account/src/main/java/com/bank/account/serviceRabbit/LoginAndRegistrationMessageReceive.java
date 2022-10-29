@@ -1,9 +1,10 @@
-package com.bank.account.service;
+package com.bank.account.serviceRabbit;
 
 import com.bank.account.dto.BankAccountDto;
-import com.bank.account.entity.BankAccountEnum;
+import com.bank.account.enumeration.BankAccountEnum;
 import com.bank.account.mapper.BankAccountMapper;
 import com.bank.account.repository.BankAccountRepository;
+import com.bank.account.service.UtilAccountService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

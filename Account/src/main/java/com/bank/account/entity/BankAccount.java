@@ -1,5 +1,6 @@
 package com.bank.account.entity;
 
+import com.bank.account.enumeration.BankAccountEnum;
 import lombok.Data;
 
 import javax.persistence.*;

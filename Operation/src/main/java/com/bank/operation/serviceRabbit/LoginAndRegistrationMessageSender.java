@@ -1,4 +1,4 @@
-package com.bank.operation.service;
+package com.bank.operation.serviceRabbit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 public class LoginAndRegistrationMessageSender {
 
     private final RabbitTemplate rabbitTemplate;
-
 
     private static final Logger logger = LoggerFactory.getLogger(LoginAndRegistrationMessageSender.class);
 

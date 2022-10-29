@@ -1,6 +1,6 @@
 package com.bank.loginAndRegistration.mapper;
 
-import com.bank.dtoForRabbit.UserDto;
+import com.bank.loginAndRegistration.dto.UserDto;
 import com.bank.loginAndRegistration.entity.User;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +13,9 @@ public class UserMapper {
         dto.setLastName(entity.getLastName());
         dto.setBirthDate(entity.getBirthDate());
         dto.setEmail(entity.getEmail());
+        dto.setUsername(entity.getUsername());
+        dto.setPassword(entity.getPassword());
+        dto.setAuthority(entity.getAuthority());
         return dto;
     }
 
@@ -22,6 +25,9 @@ public class UserMapper {
         entity.setLastName(dto.getLastName());
         entity.setBirthDate(dto.getBirthDate());
         entity.setEmail(dto.getEmail());
+        entity.setUsername(dto.getUsername());
+        entity.setPassword(dto.getPassword());
+        entity.setAuthority(dto.getAuthority());
         return entity;
     }
 }

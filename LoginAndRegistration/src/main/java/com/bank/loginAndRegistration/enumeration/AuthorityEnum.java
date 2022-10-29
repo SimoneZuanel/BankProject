@@ -1,4 +1,4 @@
-package com.bank.loginAndRegistration.entity;
+package com.bank.loginAndRegistration.enumeration;
 
 public enum AuthorityEnum {
     ROLE_CLIENT,

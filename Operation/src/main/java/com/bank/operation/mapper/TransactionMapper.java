@@ -16,6 +16,7 @@ public class TransactionMapper {
         dto.setDate(entity.getDate());
         dto.setCausal(entity.getCausal());
         dto.setState(entity.getState());
+        dto.setTypeOfTransactionEnum(entity.getTypeOfTransactionEnum());
         return dto;
     }
 
@@ -28,6 +29,7 @@ public class TransactionMapper {
         entity.setDate(dto.getDate());
         entity.setCausal(dto.getCausal());
         entity.setState(dto.getState());
+        entity.setTypeOfTransactionEnum(dto.getTypeOfTransactionEnum());
         return entity;
     }
 }

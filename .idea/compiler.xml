@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="eurekaserver" />
         <module name="LoginAndRegistration" />
+        <module name="EurekaServer" />
         <module name="Account" />
         <module name="Operation" />
         <module name="Gateway" />
@@ -18,6 +19,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Account" options="-parameters" />
+      <module name="EurekaServer" options="-parameters" />
       <module name="Gateway" options="-parameters" />
       <module name="LoginAndRegistration" options="-parameters" />
       <module name="Operation" options="-parameters" />

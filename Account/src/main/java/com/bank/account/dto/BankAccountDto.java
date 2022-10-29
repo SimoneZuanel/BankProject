@@ -1,6 +1,6 @@
 package com.bank.account.dto;
 
-import com.bank.account.entity.BankAccountEnum;
+import com.bank.account.enumeration.BankAccountEnum;
 import lombok.Data;
 
 @Data

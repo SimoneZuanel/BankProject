@@ -45,11 +45,11 @@ public class UtilAccountService {
         return this.iban;
     }
 
-    protected String getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    protected String getIban() {
+    public String getIban() {
         return iban;
     }
 
