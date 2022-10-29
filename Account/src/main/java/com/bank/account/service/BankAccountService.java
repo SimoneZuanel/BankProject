@@ -18,10 +18,8 @@ public class BankAccountService {
 
     @Autowired
     private BankAccountRepository bankAccountRepository;
-
     @Autowired
     private UtilAccountService utilAccountService;
-
     @Autowired
     private BankAccountMapper bankAccountMapper;
 

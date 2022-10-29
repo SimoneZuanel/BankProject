@@ -79,7 +79,7 @@ public class SignInService {
         List<String> usernameList = userRepository.findUsernames();
         Integer usernameNumber = randomUsernameGenerate();
 
-        while (usernameList.contains(usernameNumber)) {
+        while (usernameList.contains(usernameNumber.toString())) {
             usernameNumber = randomUsernameGenerate();
         }
 

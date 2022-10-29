@@ -13,7 +13,6 @@ public class AccountMessageReceive {
 
     @Autowired
     private UserMapper userMapper;
-
     @Autowired
     private UserRepository userRepository;
 
